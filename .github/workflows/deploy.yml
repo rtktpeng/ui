@@ -35,6 +35,16 @@ jobs:
       - name: Install
         run: npm install
       - name: Deploy Docs
-        run: npm run storybook:deploy
+        run: npm run storybook:docs
+      - name: Commit Documentation Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Releasing new documentation"
+      - name: Push Documentation
+        run: git push --force --quiet https://${GITUB_TOKEN}@rtkwlf/ui ${SOURCE_BRANCH}:${TARGET_BRANCH}`
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          SOURCE_BRANCH: master
+          TARGET_BRANCH: aaho-doc-test
