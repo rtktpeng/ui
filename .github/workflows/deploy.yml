@@ -43,9 +43,9 @@ jobs:
           git add .
           git commit -m "Releasing new documentation"
       - name: Push Documentation
-        run: |
-          git push --force --quiet https://${GITUB_TOKEN}@github.com/rtkwlf/ui ${SOURCE_BRANCH}:${TARGET_BRANCH}
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SOURCE_BRANCH: master
           TARGET_BRANCH: aaho-doc-test
+        run: |
+          git push --force --quiet https://$GITUB_TOKEN@github.com/rtkwlf/ui $SOURCE_BRANCH:$TARGET_BRANCH
