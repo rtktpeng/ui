@@ -34,7 +34,7 @@ jobs:
           node-version: '10.16'
       - name: Install
         run: npm install
-      - name: Deploy Docs
+      - name: Build Docs
         run: npm run storybook:docs
       - name: Commit Documentation Changes
         run: |
@@ -43,7 +43,7 @@ jobs:
           git add .
           git commit -m "Releasing new documentation"
       - name: Push Documentation
-        run: git push --force --quiet https://${GITUB_TOKEN}@rtkwlf/ui ${SOURCE_BRANCH}:${TARGET_BRANCH}`
+        run: git push --force --quiet https://${GITUB_TOKEN}@rtkwlf/ui ${SOURCE_BRANCH}:${TARGET_BRANCH}
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SOURCE_BRANCH: master
