@@ -46,5 +46,5 @@ jobs:
         env:
           SOURCE_BRANCH: master
           TARGET_BRANCH: aaho-doc-test
-        run: echo ${{ SOURCE_BRANCH }} and ${{ TARGET_BRANCH }}
+        run: echo ${SOURCE_BRANCH} and ${TARGET_BRANCH}
 #        run: git push --force --quiet https://${{secrets.GITHUB_TOKEN}}@github.com/rtkwlf/ui ${SOURCE_BRANCH}:${TARGET_BRANCH}
