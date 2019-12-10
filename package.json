@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 9000 --quiet -s public",
     "storybook:build": "build-storybook -o build/storybook/static -s public",
     "storybook:docs": "build-storybook --docs -o docs -s public",
-    "storybook:deploy": "storybook-to-ghpages -- --existing-output-dir=/docs",
+    "storybook:deploy": "storybook-to-ghpages -- --existing-output-dir=/docs --ci --host-token-env-variable=GITHUB_TOKEN",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "coverage:open": "open ./coverage/lcov-report/index.html",
