@@ -42,4 +42,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Releasing new documentation"
-          git push --force --quiet https://${{secrets.GITHUB_TOKEN}}@github.com/rtkwlf/ui master:aaho-doc-test
+          git push --force --quiet https://${{secrets.GITHUB_TOKEN}}@github.com/rtkwlf/ui.git master:aaho-doc-test
