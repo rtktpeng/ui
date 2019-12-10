@@ -40,6 +40,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
+          git add docs
           git commit -m "Releasing new documentation"
           git push --force --quiet https://${{secrets.GITHUB_TOKEN}}@github.com/rtkwlf/ui.git master:aaho-doc-test
