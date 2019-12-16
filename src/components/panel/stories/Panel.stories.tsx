@@ -10,7 +10,6 @@ import {
 
 const Parent = styled.div`
   padding: 20px;
-  background: #F1F1F1;
 `;
 
 const Container = styled.div`
