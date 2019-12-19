@@ -1,9 +1,9 @@
 import {
   getRelativePosition,
-  getScroll
+  getRegion
 } from "./getRelativePosition";
 
 export {
   getRelativePosition,
-  getScroll
+  getRegion
 };
