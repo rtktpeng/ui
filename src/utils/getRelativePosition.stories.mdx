@@ -2,7 +2,7 @@ import { Meta, Source } from '@storybook/addon-docs/blocks';
 import { Title, SectionTitle } from '../../.storybook/components';
 
 <Meta
-  title="Utilities/getRelativePosition"
+  title="Utilities"
 />
 
 <Title
@@ -36,6 +36,26 @@ const position = ['cl', 'cr'];
 
 const floaterPosition = getRelativePosition(anchorElement, floaterElement, position);
 ```
+
+<Title
+  title="getRegion"
+  subtitle="Get the position of an element in the DOM including the scrolling offset"
+/>
+
+A lot of use cases require the need for a component to know where an element is in the DOM. A common case is a navbar
+ that scrolls the element into view when clicked. To accomplish this, `getRegion` can be used in conjunction with
+  `window.scrollTo`.
+  
+<SectionTitle>Example</SectionTitle>
+
+```
+import { getRegion } from '@rtkwlf/ui';
+
+const elementPosition = getRegion(element);
+
+window.scrollTo(elementPosition);
+  ```
+
 
 
 

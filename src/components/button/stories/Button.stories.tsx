@@ -9,14 +9,31 @@ import {
 // @ts-ignore
 import mdx from './Button.mdx';
 
+import {
+  getRegion
+} from "../../../utils";
+
 const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
 `;
 
+const TestContainer = styled.div`
+  height: 800px
+`;
+
 const Spacer = styled.span`
   height: 1px;
   padding: 5px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  position:sticky;
+  top: 0;
 `;
 
 export default {
@@ -157,6 +174,42 @@ export const size = () => {
         <Button size={size}  shape="circle" ghost>G</Button>
       </Container>
     </React.Fragment>
+  );
+};
+
+
+export const test = () => {
+  const foo = React.useRef<HTMLDivElement>(null);
+  const bar = React.useRef<HTMLDivElement>(null);
+  const container = React.useRef<HTMLDivElement>(null);
+
+  const handleFooClick = React.useCallback(() => {
+    if (foo.current && container.current) {
+      const thing = getRegion(foo.current, container.current);
+      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top - 200});
+    }
+  }, [foo]);
+
+  const handleBarClick = React.useCallback(() => {
+    if (bar.current && container.current) {
+      const thing = getRegion(bar.current, container.current);
+      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top - 200});
+    }
+  }, [bar]);
+
+  return (
+    <div ref={container} style={{ maxHeight: '500px', overflow: 'scroll'}}>
+      <Header>
+        <Button onClick={handleFooClick}>Foo</Button>
+        <Button onClick={handleBarClick}>Bar</Button>
+      </Header>
+      <TestContainer ref={foo} >
+        foo
+      </TestContainer>
+      <TestContainer ref={bar} >
+        bar
+      </TestContainer>
+    </div>
   );
 };
 

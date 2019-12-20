@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export interface Position {
   top: number;
   left: number;
@@ -15,8 +17,13 @@ export function getScroll(w: any, isTop: boolean): number {
   let value = w[`page${isTop ? 'Y' : 'X'}Offset`];
   const method = `scroll${isTop ? 'Top' : 'Left'}`;
   if (typeof value !== 'number') {
-    const d = w.document;
-    value = d.documentElement[method];
+    let d;
+    if (w.document) {
+      d = w.document;
+      value = d.documentElement[method];
+    } else {
+      value = w[method];
+    }
     if (typeof value !== 'number') {
       value = d.body[method];
     }
@@ -44,10 +51,12 @@ function getWindow(element: HTMLElement) {
 }
 
 // gets the the region of the element in space by taking into account the current scroll position
-export function getRegion(element: HTMLElement): Region {
+export function getRegion(element: HTMLElement, scrollContainer?: HTMLElement): Region {
   let x;
   let y;
 
+  // @ts-ignore
+  console.log(scrollContainer.scrollTop);
   const doc = element.ownerDocument;
   const body = doc && doc.body;
   const docElem = doc && doc.documentElement;
@@ -60,8 +69,8 @@ export function getRegion(element: HTMLElement): Region {
   x -= (docElem && docElem.clientLeft) || (body && body.clientLeft) || 0;
   y -= (docElem && docElem.clientTop) || (body && body.clientTop) || 0;
 
-  x += getScrollLeft(win);
-  y += getScrollTop(win);
+  x += getScrollLeft(scrollContainer || win);
+  y += getScrollTop(scrollContainer || win);
 
   return {
     left: Number(x.toFixed(0)),
