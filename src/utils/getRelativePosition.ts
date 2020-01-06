@@ -59,11 +59,15 @@ export function getRegion(element: HTMLElement, scrollContainer?: HTMLElement): 
   const win = getWindow(element);
   const box = element.getBoundingClientRect();
 
-  x = box.left;
-  y = box.top;
+  if (scrollContainer) {
+    x = box.left;
+    y = box.top;
+  }
 
-  x -= (docElem && docElem.clientLeft) || (body && body.clientLeft) || 0;
-  y -= (docElem && docElem.clientTop) || (body && body.clientTop) || 0;
+  // need to sort out how to get this to work with a scrolling container
+
+  x -= (scrollContainer && scrollContainer.clientLeft) || (docElem && docElem.clientLeft) || (body && body.clientLeft) || 0;
+  y -= (scrollContainer && scrollContainer.clientHeight) || (docElem && docElem.clientTop) || (body && body.clientTop) || 0;
 
   x += getScrollLeft(scrollContainer || win);
   y += getScrollTop(scrollContainer || win);

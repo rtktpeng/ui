@@ -19,7 +19,8 @@ const Container = styled.div`
 `;
 
 const TestContainer = styled.div`
-  height: 800px
+  height: 800px;
+  background: red;
 `;
 
 const Spacer = styled.span`
@@ -186,14 +187,15 @@ export const test = () => {
   const handleFooClick = React.useCallback(() => {
     if (foo.current && container.current) {
       const thing = getRegion(foo.current, container.current);
-      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top - 200});
+      console.log(thing);
+      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top});
     }
   }, [foo]);
 
   const handleBarClick = React.useCallback(() => {
     if (bar.current && container.current) {
       const thing = getRegion(bar.current, container.current);
-      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top - 200});
+      container.current.scrollTo({...thing, behavior: 'smooth', top: thing.top + 200});
     }
   }, [bar]);
 
