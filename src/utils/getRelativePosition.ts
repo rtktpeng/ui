@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export interface Position {
   top: number;
   left: number;
@@ -55,8 +53,6 @@ export function getRegion(element: HTMLElement, scrollContainer?: HTMLElement): 
   let x;
   let y;
 
-  // @ts-ignore
-  console.log(scrollContainer.scrollTop);
   const doc = element.ownerDocument;
   const body = doc && doc.body;
   const docElem = doc && doc.documentElement;
