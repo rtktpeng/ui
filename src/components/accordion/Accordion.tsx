@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { AccordionItem,
-  AccordionItemProps } from './AccordionItem';
+import { AccordionItem, AccordionItemProps } from './AccordionItem';
 
 import { AccordionContext } from './context';
 
