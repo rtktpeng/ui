@@ -13,7 +13,7 @@
     "storybook:build": "build-storybook -o build/storybook/static -s public",
     "storybook:docs": "build-storybook --docs -o docs -s public",
     "build": "rm -rf dist/ && rm -rf types/ && npm run rollup && npm run build:ts",
-    "prettier": "prettier --write '{src,.storybook}/**/*.{js,json,md,ts,yaml}'",
+    "prettier": "prettier --write '{src,.storybook}/**/*.{js,tsx,ts}'",
     "test": "jest",
     "rollup": "rollup -c",
     "test:coverage": "jest --coverage",
