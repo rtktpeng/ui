@@ -26,7 +26,7 @@ export interface DividerProps {
   text?: string;
 
   /** aligns the text */
-  textAlign?: string;
+  textAlign?: 'right' | 'left' | 'center';
 
   /** In case there is need to match the bg color with the parent */
   bgColor?: string;
