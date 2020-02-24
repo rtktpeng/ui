@@ -33,12 +33,3 @@ export const colors: Colors = {
   white: '#FFFFFF',
   whiteRGB: '255,255,255',
 };
-
-// primary
-// secondary
-// tertiary
-// title
-// body
-// border
-// danger
-//
