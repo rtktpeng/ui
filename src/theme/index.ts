@@ -139,8 +139,8 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   panelBorderRadius: '4px',
   panelPadding: '24px',
   panelMargin: '32px',
-  panelActiveBoxShadow: `0px 0px 4px rgba(${themeColors.blackRGB},0.20)`,
-  panelHoverBoxShadow: `0px 7px 21px rgba(${themeColors.blackRGB},0.07)`,
+  panelActiveBoxShadow: `0px 0px 4px rgba(${rgba(themeColors.black, 0.2)}`,
+  panelHoverBoxShadow: `0px 7px 21px rgba(${rgba(themeColors.black, 0.07)}`,
 
   // ---- Typography ---- //
   typographyTitleFontFamily: '"Encode Sans", sans-serif',
@@ -199,7 +199,7 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   dividerBorder: themeColors.border,
   dividerBackground: themeColors.border,
   dividerTextPrimaryBackground: themeColors.primaryBackground,
-  dividerTextColor: themeColors.bodyFontColor,
+  dividerTextColor: themeColors.body,
 
   colors: {
     ...themeColors,
