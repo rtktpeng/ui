@@ -39,11 +39,9 @@ export const Layout: LayoutComponent<LayoutProps> = ({
   className,
 }) => {
   return (
-    <React.Fragment>
-      <Container className={`${className} rtk-layout`}>
-        <LayoutContainer>{children}</LayoutContainer>
-      </Container>
-    </React.Fragment>
+    <Container className={`${className} rtk-layout`}>
+      <LayoutContainer>{children}</LayoutContainer>
+    </Container>
   );
 };
 
