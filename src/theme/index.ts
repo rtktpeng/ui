@@ -73,6 +73,9 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
 
   // ---- Layout ---- //
   layoutHeaderHeight: '60px',
+  layoutHeaderPaddingSmall: '0 8px',
+  layoutHeaderPaddingMedium: '0 16px',
+  layoutHeaderPaddingLarge: '0 24px',
   layoutFooterHeight: '60px',
 
   // ---- Input ---- //
@@ -104,7 +107,7 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   inputSuffixRight: '10px',
 
   // ---- Media Screen ---- //
-  mediaScreenSmall: '700px',
+  mediaScreenSmall: '600px',
   mediaScreenMedium: '748px',
   mediaScreenLarge: '992px',
   mediaScreenVeryLarge: '1200px',

@@ -137,6 +137,9 @@ export interface GlobalTheme {
 
   // ---- Layout ---- //
   layoutHeaderHeight: string;
+  layoutHeaderPaddingSmall: string;
+  layoutHeaderPaddingMedium: string;
+  layoutHeaderPaddingLarge: string;
   layoutFooterHeight: string;
 
   // ---- Media Screen ---- //

@@ -17,6 +17,19 @@ interface HeaderContainerProps {
 const Container = styled.div<HeaderContainerProps>`
   ${({ theme }) => css`
     height: ${theme.layoutHeaderHeight};
+
+    display: flex;
+    align-items: center;
+
+    padding: ${theme.layoutHeaderPaddingLarge};
+
+    @media (max-width: ${theme.mediaScreenMedium}) {
+      padding: ${theme.layoutHeaderPaddingMedium};
+    }
+
+    @media (max-width: ${theme.mediaScreenSmall}) {
+      padding: ${theme.layoutHeaderPaddingSmall};
+    }
   `}
 `;
 
