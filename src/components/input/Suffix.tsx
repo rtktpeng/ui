@@ -45,11 +45,11 @@ export const Suffix: React.FunctionComponent<any> = ({
   let suffixContent;
   switch (validationStatus) {
     case 'error': {
-      suffixContent = <Icon.TimesSolid color={theme.colors.danger} />;
+      suffixContent = <Icon.TimesSolid color={theme.colors.red} />;
       break;
     }
     case 'success': {
-      suffixContent = <Icon.CheckSolid color={theme.colors.success} />;
+      suffixContent = <Icon.CheckSolid color={theme.colors.green} />;
       break;
     }
     case 'loading': {
