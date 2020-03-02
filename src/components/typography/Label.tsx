@@ -8,7 +8,7 @@ export interface LabelProps {
   className?: string;
 }
 
-const StyledLabel = styled.div`
+const StyledLabel = styled.label`
   ${({ theme }) => css`
     text-transform: ${theme.typographyLabelTextTransform};
     color: ${theme.typographyLabelColor};
