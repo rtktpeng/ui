@@ -18,28 +18,26 @@ export interface PanelProps {
 }
 
 const Container = styled.div`
-  ${({ onClick, theme }) => css`
-    background: ${theme.panelBackground};
-    border: ${theme.panelBorder};
-    border-color: ${theme.panelBorderColor};
-    border-radius: ${theme.panelBorderRadius};
-    padding: ${theme.panelPadding};
-    margin: ${theme.panelMargin};
+  background: ${({ theme }) => theme.panelBackground};
+  border: ${({ theme }) => theme.panelBorder};
+  border-color: ${({ theme }) => theme.panelBorderColor};
+  border-radius: ${({ theme }) => theme.panelBorderRadius};
+  padding: ${({ theme }) => theme.panelPadding};
+  margin: ${({ theme }) => theme.panelMargin};
 
-    transition: all ${theme.animationTimeFast}s;
+  transition: box-shadow ${({ theme }) => theme.animationTimeFast}s;
 
-    ${onClick &&
-      css`
-        &:hover {
-          cursor: pointer;
-          box-shadow: ${theme.panelHoverBoxShadow};
-        }
-
-        &:active {
-          box-shadow: ${theme.panelActiveBoxShadow};
-        }
-      `}
-  `};
+  ${props =>
+    props.onClick !== undefined &&
+    css`
+      &:hover {
+        cursor: pointer;
+        box-shadow: ${props => props.theme.panelHoverBoxShadow};
+      }
+      &:active {
+        box-shadow: ${props => props.theme.panelActiveBoxShadow};
+      }
+    `}
 `;
 
 export const Panel: React.FunctionComponent<PanelProps> = ({
