@@ -24,8 +24,9 @@ const Container = styled.div`
   border-radius: ${({ theme }) => theme.panelBorderRadius};
   padding: ${({ theme }) => theme.panelPadding};
   margin: ${({ theme }) => theme.panelMargin};
-
   transition: box-shadow ${({ theme }) => theme.animationTimeFast}s;
+
+  box-sizing: border-box;
 
   ${props =>
     props.onClick !== undefined &&
