@@ -20,7 +20,10 @@ export interface LayoutComponent<T> extends React.FunctionComponent<T> {
 }
 
 export interface LayoutProps {
+  /** classname for the Layout */
   className?: string;
+
+  /** Set to true to tell the layout component that a sider component is being used */
   hasSider?: boolean;
 }
 

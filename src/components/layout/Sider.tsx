@@ -7,6 +7,7 @@ import { useTheme } from '../../hooks';
 import { GlobalTheme } from '../../theme/types';
 
 export interface SiderProps {
+  /** classname for the Layout.Sider */
   className?: string;
 }
 
