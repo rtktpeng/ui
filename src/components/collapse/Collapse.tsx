@@ -11,7 +11,10 @@ import { useAfterMountEffect } from '../../hooks';
 import { useTheme } from '../../hooks';
 
 export interface CollapseProps {
-  /** Option to handle if collapse is expanded */
+  /** If true, collapse expand state will not be able to change */
+  disabled?: boolean;
+
+  /** If true, collapse will be expanded */
   expanded?: boolean;
 
   /** Icon to show on the right to show the current collapse state */
@@ -39,8 +42,13 @@ export interface CollapseProps {
   onChange?: (itemKey?: string | number) => void;
 }
 
-const Container = styled.div`
-  ${({ theme }) => css`
+const Container = styled.div<{ disabled?: boolean }>`
+  ${({ disabled, theme }) => css`
+    ${disabled &&
+      css`
+        pointer-events: none;
+      `}
+
     &:hover,
     :focus-within {
       .rtk-collapse-header {
@@ -54,6 +62,7 @@ const Container = styled.div`
 `;
 
 export const Collapse: React.FunctionComponent<CollapseProps> = ({
+  disabled,
   expanded,
   icon,
   className,
@@ -71,6 +80,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
   const theme = useTheme();
 
   const onHeaderClick = React.useCallback(() => {
+    // if external control of expanded state is not being used
     if (expanded === undefined) {
       setExpanded(!isExpanded);
 
@@ -82,6 +92,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
     }
   }, [expanded, isExpanded, itemKey, onChange]);
 
+  // responsible for handling external control of the expanded state
   const handleSetExpanded = React.useCallback(() => {
     setExpanded(expanded);
   }, [expanded]);
@@ -89,10 +100,15 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
   useAfterMountEffect(handleSetExpanded, [expanded]);
 
   return (
-    <Container className={`${className} rtk-collapse`} theme={theme}>
+    <Container
+      className={`${className} rtk-collapse`}
+      disabled={disabled}
+      theme={theme}
+    >
       <Header
-        icon={icon}
+        disabled={disabled}
         expanded={isExpanded}
+        icon={icon}
         onClick={onHeaderClick}
         theme={theme}
       >
@@ -110,6 +126,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
 };
 
 Collapse.defaultProps = {
+  disabled: false,
   expanded: undefined,
   children: '',
   className: '',
