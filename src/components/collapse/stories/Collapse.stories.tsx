@@ -65,7 +65,12 @@ export const destroy = () => (
 
 export const disabled = () => (
   <Container>
-    <Collapse header="Click Me" itemKey="default" disabled>
+    <Collapse
+      header="Click Me"
+      itemKey="default"
+      disabled
+      onChange={() => console.log('change')}
+    >
       <TestContent />
     </Collapse>
   </Container>

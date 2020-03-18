@@ -10,7 +10,10 @@ interface CollapseSpacerProps {
 }
 
 export interface AccordionItemProps {
-  /** Option to handle if collapse is expanded */
+  /** If true, accordion item expand state will not be able to change */
+  disabled?: boolean;
+
+  /** If true, accordion item will be expanded */
   expanded?: boolean;
 
   /** Icon to show on the right to show the current collapse state */
