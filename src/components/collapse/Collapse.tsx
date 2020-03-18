@@ -11,7 +11,7 @@ import { useAfterMountEffect } from '../../hooks';
 import { useTheme } from '../../hooks';
 
 export interface CollapseProps {
-  /** If true, collapse expand state will not be able to change */
+  /** If true, collapse expand state will not be able to change when header is clicked */
   disabled?: boolean;
 
   /** If true, collapse will be expanded */
@@ -94,8 +94,12 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
 
   // responsible for handling external control of the expanded state
   const handleSetExpanded = React.useCallback(() => {
-    setExpanded(expanded);
-  }, [expanded]);
+    if (!disabled) {
+      setExpanded(expanded);
+    } else {
+      setExpanded(false);
+    }
+  }, [disabled, expanded]);
 
   useAfterMountEffect(handleSetExpanded, [expanded]);
 

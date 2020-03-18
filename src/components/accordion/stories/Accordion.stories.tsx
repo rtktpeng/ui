@@ -109,13 +109,20 @@ export const external = () => {
         defaultExpandedItems={selectedItems}
         onChange={handleOnChange}
       >
-        <Accordion.Item itemKey={itemKeys[0]}>
+        <Accordion.Item header={'Office 365'} itemKey={itemKeys[0]}>
           <CollapseContent />
         </Accordion.Item>
-        <Accordion.Item itemKey={itemKeys[1]}>
+        <Accordion.Item
+          header={'G Suite (complete)'}
+          itemKey={itemKeys[1]}
+          disabled
+        >
           <CollapseContent />
         </Accordion.Item>
-        <Accordion.Item itemKey={itemKeys[2]}>
+        <Accordion.Item
+          header={'Some other cloud sensor'}
+          itemKey={itemKeys[2]}
+        >
           <CollapseContent />
         </Accordion.Item>
       </Accordion>
