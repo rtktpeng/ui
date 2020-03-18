@@ -101,7 +101,7 @@ export const Collapse: React.FunctionComponent<CollapseProps> = ({
     }
   }, [disabled, expanded]);
 
-  useAfterMountEffect(handleSetExpanded, [expanded]);
+  useAfterMountEffect(handleSetExpanded, [disabled, expanded]);
 
   return (
     <Container
@@ -134,7 +134,7 @@ Collapse.defaultProps = {
   expanded: undefined,
   children: '',
   className: '',
-  defaultExpanded: undefined,
+  defaultExpanded: false,
   destroyOnClose: false,
   header: '',
   onChange: undefined,

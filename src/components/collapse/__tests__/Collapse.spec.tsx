@@ -69,6 +69,21 @@ describe('Collapse', () => {
     expect(onChangeMock).toBeCalledTimes(0);
   });
 
+  it('should not expand collapse via external control when disabled', () => {
+    const wrapper = mount(
+      <Collapse disabled expanded={false}>
+        Content
+      </Collapse>
+    );
+
+    wrapper.setProps({ expanded: true });
+
+    expect(wrapper.find('Header').prop('expanded')).toBe(false);
+    expect(wrapper.find('ContentContainer').prop('animate')).toStrictEqual(
+      'closed'
+    );
+  });
+
   it('sets the destroyOnClose prop', () => {
     const wrapper = shallow(
       <Collapse itemKey={'test'} header={'Header'} destroyOnClose>
