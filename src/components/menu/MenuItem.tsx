@@ -43,13 +43,7 @@ const Container = styled.div<ContainerProps>`
     ${disabled &&
       css`
         cursor: default;
-
-        &:hover {
-          .rtk-type-body {
-            color: ${theme.colors.bodyDisabled};
-          }
-          background: unset;
-        }
+        pointer-events: none;
       `}
   `}
 `;

@@ -28,7 +28,7 @@ export default {
 
 export const simple = () => (
   <Container>
-    <Menu>
+    <Menu onClick={key => console.log(key)}>
       <Menu.Item itemKey={'1'} disabled>
         Item 1
       </Menu.Item>
