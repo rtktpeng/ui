@@ -4,15 +4,12 @@ import styled from 'styled-components';
 
 import { MenuItem, MenuItemProps } from './MenuItem';
 
-import { SubMenu, SubMenuProps } from './SubMenu';
-
 import { MenuContext } from './MenuContext';
 
 import { MenuItemGroup, MenuItemGroupProps } from './MenuItemGroup';
 
 export interface MenuFunctionComponent<T> extends React.FunctionComponent<T> {
   Item: React.FunctionComponent<MenuItemProps>;
-  SubMenu: React.FunctionComponent<SubMenuProps>;
   ItemGroup: React.FunctionComponent<MenuItemGroupProps>;
 }
 
@@ -54,5 +51,4 @@ export const Menu: MenuFunctionComponent<MenuProps> = ({
 };
 
 Menu.Item = MenuItem;
-Menu.SubMenu = SubMenu;
 Menu.ItemGroup = MenuItemGroup;

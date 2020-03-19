@@ -4,6 +4,7 @@ export interface Colors {
   bodyDisabled: string;
   border: string;
   blue: string;
+  caption: string;
   description: string;
   green: string;
   label: string;
@@ -252,6 +253,13 @@ export interface GlobalTheme {
   typographyDescriptionFontWeight: string;
   typographyDescriptionLineHeight: string;
   typographyDescriptionLetterSpacing: string;
+
+  typographyCaptionColor: string;
+  typographyCaptionFontFamily: string;
+  typographyCaptionFontSize: string;
+  typographyCaptionFontWeight: string;
+  typographyCaptionLineHeight: string;
+  typographyCaptionLetterSpacing: string;
 
   typographyLabelColor: string;
   typographyLabelFontFamily: string;
