@@ -136,6 +136,11 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   mediaScreenLarge: '992px',
   mediaScreenVeryLarge: '1200px',
 
+  // ---- Menu ---- //
+  menuItemPadding: '4px 16px',
+  menuItemHoverColor: themeColors.primary,
+  menuItemHoverBackground: themeColors.tertiaryBackground,
+
   // ---- Modal ---- //
   modalBackground: themeColors.primaryBackground,
   modalBorder: 'none',
@@ -216,6 +221,7 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   typographyBodyFontWeight: '400',
   typographyBodyLineHeight: '1.5',
   typographyBodyLetterSpacing: '0',
+  typographyBodyDisabledColor: themeColors.bodyDisabled,
 
   typographyDescriptionColor: themeColors.description,
   typographyDescriptionFontFamily: '"Lato" sans-serif',
