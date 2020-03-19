@@ -4,12 +4,16 @@ import styled from 'styled-components';
 
 import { MenuItem, MenuItemProps } from './MenuItem';
 
+import { SubMenu, SubMenuProps } from './SubMenu';
+
 import { MenuContext } from './MenuContext';
+
+import { MenuItemGroup, MenuItemGroupProps } from './MenuItemGroup';
 
 export interface MenuFunctionComponent<T> extends React.FunctionComponent<T> {
   Item: React.FunctionComponent<MenuItemProps>;
-  SubMenu?: React.FunctionComponent<any>;
-  Divider?: React.FunctionComponent<any>;
+  SubMenu: React.FunctionComponent<SubMenuProps>;
+  ItemGroup: React.FunctionComponent<MenuItemGroupProps>;
 }
 
 export interface MenuProps {
@@ -50,16 +54,5 @@ export const Menu: MenuFunctionComponent<MenuProps> = ({
 };
 
 Menu.Item = MenuItem;
-// Menu.SubMenu = 'submenu';
-// Menu.Divider = 'divider';
-
-// Menu
-// onClick - returns the menu key that was clicked
-// Menu.Item
-// takes children
-// itemKey
-// disabled
-// Menu.SubMenu
-// title
-// key
-// Menu.Divider
+Menu.SubMenu = SubMenu;
+Menu.ItemGroup = MenuItemGroup;

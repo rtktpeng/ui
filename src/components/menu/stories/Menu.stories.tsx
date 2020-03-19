@@ -29,15 +29,16 @@ export default {
 export const simple = () => (
   <Container>
     <Menu onClick={key => console.log(key)}>
-      <Menu.Item itemKey={'1'} disabled>
-        Item 1
-      </Menu.Item>
-      <Menu.Item itemKey={'2'}>Item 2</Menu.Item>
-      <Menu.Item itemKey={'3'}>Item 3</Menu.Item>
-      <Menu.Item itemKey={'4'}>Item 4</Menu.Item>
-      <Menu.Item itemKey={'5'}>Item 5</Menu.Item>
-      <Menu.Item itemKey={'6'}>Item 6</Menu.Item>
+      <Menu.Item itemKey={'1'}>Item 1</Menu.Item>
+      <Menu.SubMenu title="Item 2" itemKey="sub-menu-1">
+        <Menu.ItemGroup title="Group 1">
+          <Menu.Item itemKey={'2'}>Sub Item 1</Menu.Item>
+          <Menu.Item itemKey={'3'}>Sub Item 2</Menu.Item>
+        </Menu.ItemGroup>
+        <Menu.Item itemKey={'4'}>Sub Item 3</Menu.Item>
+      </Menu.SubMenu>
+      <Menu.Item itemKey={'5'}>Item 3</Menu.Item>
+      <Menu.Item itemKey={'6'}>Item 4</Menu.Item>
     </Menu>
   </Container>
-  // your component story here
 );
