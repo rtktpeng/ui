@@ -47,6 +47,7 @@ export {
 export { Modal, ModalProps } from './components/modal/Modal';
 
 export {
+  MenuFunctionComponent,
   Menu,
   MenuProps,
   MenuItemProps,
