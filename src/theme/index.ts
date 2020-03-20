@@ -230,13 +230,6 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   typographyDescriptionLineHeight: '1.5',
   typographyDescriptionLetterSpacing: '0',
 
-  typographyCaptionColor: themeColors.caption,
-  typographyCaptionFontFamily: '"Lato" sans-serif',
-  typographyCaptionFontSize: '12px',
-  typographyCaptionFontWeight: '400',
-  typographyCaptionLineHeight: '1.5',
-  typographyCaptionLetterSpacing: '0',
-
   typographyLabelColor: themeColors.label,
   typographyLabelFontFamily: '"Lato" sans-serif',
   typographyLabelFontSize: '11px',
