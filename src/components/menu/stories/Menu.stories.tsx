@@ -38,7 +38,9 @@ export const groups = () => (
   <Container>
     <Menu onClick={key => console.log(key)}>
       <Menu.ItemGroup title="Group 1">
-        <Menu.Item itemKey={'1-1'}>Sub Item 1</Menu.Item>
+        <Menu.Item itemKey={'1-1'} disabled>
+          Sub Item 1
+        </Menu.Item>
         <Menu.Item itemKey={'1-2'}>Sub Item 2</Menu.Item>
       </Menu.ItemGroup>
       <Menu.ItemGroup title="Group 2">

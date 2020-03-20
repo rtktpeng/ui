@@ -58,10 +58,10 @@ export const MenuItem: React.FunctionComponent<MenuItemProps> = ({
   const { onClick } = React.useContext(MenuContext);
 
   const handleClick = React.useCallback(() => {
-    if (onClick) {
+    if (onClick && !disabled) {
       onClick(itemKey);
     }
-  }, [itemKey, onClick]);
+  }, [itemKey, disabled, onClick]);
 
   return (
     <Container
