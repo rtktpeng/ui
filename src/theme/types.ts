@@ -140,6 +140,7 @@ export interface GlobalTheme {
   inputLargeHeight: string;
   inputLargeFontSize: number;
   inputPadding: string;
+  inputTextAreaPadding: string;
   inputPlaceholderColor: string;
   inputPrefixLeft: string;
   inputSuffixRight: string;
