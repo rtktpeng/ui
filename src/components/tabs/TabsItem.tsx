@@ -19,9 +19,7 @@ export interface TabsItemProps {
   title: React.ReactNode;
 }
 
-const Container = styled.div`
-  ${({ theme }) => css``}
-`;
+const Container = styled.div``;
 
 const Title = styled(Typography.Body)<{ theme: any; isSelected: boolean }>`
   ${({ theme, isSelected }) => css`
@@ -46,7 +44,7 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
   itemKey,
   title,
 }) => {
-  const tabItemRef = React.useRef(null);
+  const tabItemRef = React.useRef<HTMLDivElement>(null);
 
   const theme = useTheme();
 
@@ -67,11 +65,13 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
   );
 
   const setSelectedItem = React.useCallback(() => {
+    if (tabItemRef.current == null) {
+      return;
+    }
+
     setActiveItem({
       itemKey,
-      // @ts-ignore
       width: tabItemRef.current.offsetWidth,
-      // @ts-ignore
       x: tabItemRef.current.offsetLeft,
     });
   }, [setActiveItem, tabItemRef, itemKey]);

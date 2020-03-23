@@ -43,7 +43,7 @@ const Container = styled.div`
 `;
 
 const TabsContainer = styled.div<StyledTabsContainerProps>`
-  ${({ placement, theme }) => css`
+  ${({ placement }) => css`
     ${placement === 'top' &&
       css`
         display: flex;
