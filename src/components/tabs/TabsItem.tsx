@@ -39,6 +39,7 @@ const Title = styled(Typography.Body)<{ theme: any; isSelected: boolean }>`
     }
   `}
 `;
+
 export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
   className,
   itemKey,
