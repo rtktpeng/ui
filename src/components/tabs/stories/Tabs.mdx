@@ -1,0 +1,23 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Tabs } from '../Tabs';
+
+<Title
+  title="Tabs"
+  subtitle="Description of your component here"
+/>
+
+<SectionTitle>Simple</SectionTitle>
+
+Description of the simple story here...
+
+<Preview>
+  <Story id="components-tabs--simple"/>
+</Preview>
+
+<Preview>
+  <Story id="components-accordion--external"/>
+</Preview>
+
+<SectionTitle>Tabs Props</SectionTitle>
+<Props of={ Tabs } />
