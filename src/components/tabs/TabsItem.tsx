@@ -23,17 +23,21 @@ const Container = styled.div`
   ${({ theme }) => css``}
 `;
 
-const Title = styled(Typography.Body)<{ theme: any }>`
-  ${({ theme }) => css`
+const Title = styled(Typography.Body)<{ theme: any; isSelected: boolean }>`
+  ${({ theme, isSelected }) => css`
     user-select: none;
     padding: 8px 16px;
     box-sizing: border-box;
     cursor: pointer;
-    opacity: 0.8;
-    transition: opacity ${theme.animationTimeVeryFast}s ease-in-out;
+    transition: color ${theme.animationTimeVeryFast}s ease-in-out;
+
+    ${isSelected &&
+      css`
+        color: ${theme.colors.primary};
+      `}
 
     &:hover {
-      opacity: 1;
+      color: ${theme.colors.primary};
     }
   `}
 `;
@@ -46,9 +50,12 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
 
   const theme = useTheme();
 
-  const { onClick, defaultSelectedItem, setActiveItem } = React.useContext(
-    TabsContext
-  );
+  const {
+    onClick,
+    defaultSelectedItem,
+    setActiveItem,
+    selectedItem,
+  } = React.useContext(TabsContext);
 
   const handleClick = React.useCallback(
     e => {
@@ -59,17 +66,29 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
     [onClick, itemKey]
   );
 
+  const setSelectedItem = React.useCallback(() => {
+    setActiveItem({
+      itemKey,
+      // @ts-ignore
+      width: tabItemRef.current.offsetWidth,
+      // @ts-ignore
+      x: tabItemRef.current.offsetLeft,
+    });
+  }, [setActiveItem, tabItemRef, itemKey]);
+
+  // handles setting the default selected item
   React.useEffect(() => {
     if (defaultSelectedItem === itemKey && tabItemRef.current !== null) {
-      setActiveItem({
-        itemKey,
-        // @ts-ignore
-        width: tabItemRef.current.offsetWidth,
-        // @ts-ignore
-        x: tabItemRef.current.offsetLeft,
-      });
+      setSelectedItem();
     }
   }, []);
+
+  // handles when the selected item changes
+  React.useEffect(() => {
+    if (selectedItem === itemKey && tabItemRef.current !== null) {
+      setSelectedItem();
+    }
+  }, [selectedItem]);
 
   return (
     <Container
@@ -77,7 +96,9 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
       className={`${className} rtk-tabs-item`}
       onClick={handleClick}
     >
-      <Title theme={theme}>{title}</Title>
+      <Title theme={theme} isSelected={itemKey === selectedItem}>
+        {title}
+      </Title>
     </Container>
   );
 };

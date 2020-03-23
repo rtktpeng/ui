@@ -24,7 +24,7 @@ export interface TabsProps {
   defaultSelectedItem?: string | number;
 
   /** callback to handle when a tab item is clicked */
-  onTabClick?: (key: string | number) => void;
+  onTabClick: (key: string | number) => void;
 
   /** placement of the tabs */
   placement?: 'top';
@@ -39,7 +39,7 @@ interface StyledTabsContainerProps {
 }
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
 `;
 
 const TabsContainer = styled.div<StyledTabsContainerProps>`
@@ -48,18 +48,18 @@ const TabsContainer = styled.div<StyledTabsContainerProps>`
       css`
         display: flex;
         align-items: center;
-        width: auto;
       `}
   `}
 `;
 
-const Inkbar = styled.div`
-  position: absolute;
-  background: orange;
-  height: 4px;
-  width: 100px;
+const Inkbar = styled.div<{ theme: GlobalTheme }>`
+  ${({ theme }) => css`
+    position: relative;
+    background: ${theme.colors.primary};
+    height: 4px;
 
-  transition: left 0.2s ease-in-out;
+    transition: all ${theme.animationTimeVeryFast}s ease-in-out;
+  `}
 `;
 
 export const Tabs: TabsFunctionComponent<TabsProps> = ({
@@ -75,35 +75,24 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
   const theme = useTheme();
 
   const handleTabClick = React.useCallback(
-    (key, { target }) => {
-      if (onTabClick) {
-        onTabClick(key);
-      }
-
-      setActiveItem({
-        itemKey: key,
-        // @ts-ignore
-        width: target.offsetWidth,
-        // @ts-ignore
-        x: target.offsetLeft,
-      });
+    key => {
+      onTabClick(key);
     },
     [onTabClick]
   );
-
-  console.log(activeItem);
 
   return (
     <TabsContext.Provider
       value={{
         defaultSelectedItem,
+        selectedItem,
         setActiveItem,
         onClick: handleTabClick,
       }}
     >
-      <Container>
+      <Container className={`${className} rtk-tabs`}>
         <TabsContainer
-          className={`${className} rtk-tabs`}
+          className="rtk-tabs-container"
           placement={placement}
           theme={theme}
         >
