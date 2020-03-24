@@ -120,3 +120,5 @@ Tabs.Item = TabsItem;
 Tabs.defaultProps = {
   placement: 'top',
 };
+
+export { TabsItemProps };
