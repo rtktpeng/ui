@@ -56,7 +56,7 @@ const Inkbar = styled.div<{ theme: GlobalTheme }>`
   ${({ theme }) => css`
     position: relative;
     background: ${theme.colors.primary};
-    height: 4px;
+    height: ${theme.tabsInkbarThickness};
 
     transition: all ${theme.animationTimeVeryFast}s ease-in-out;
   `}
@@ -76,9 +76,12 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
 
   const handleTabClick = React.useCallback(
     key => {
-      onTabClick(key);
+      // prevents onTabClick from being called when the tab item is already selected
+      if (activeItem && activeItem.itemKey !== key) {
+        onTabClick(key);
+      }
     },
-    [onTabClick]
+    [onTabClick, activeItem]
   );
 
   return (
@@ -100,6 +103,7 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
         </TabsContainer>
         {activeItem == null ? null : (
           <Inkbar
+            theme={theme}
             style={{
               width: activeItem.width,
               left: activeItem.x,

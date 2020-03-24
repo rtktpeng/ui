@@ -8,6 +8,8 @@ import { TabsContext } from './TabsContext';
 
 import { useTheme } from '../../hooks/useTheme';
 
+import { GlobalTheme } from '../../theme/types';
+
 export interface TabsItemProps {
   /** className of the tabs item component */
   className?: string;
@@ -21,12 +23,16 @@ export interface TabsItemProps {
 
 const Container = styled.div``;
 
-const Title = styled(Typography.Body)<{ theme: any; isSelected: boolean }>`
+const Title = styled(Typography.Body)<{
+  theme: GlobalTheme;
+  isSelected: boolean;
+}>`
   ${({ theme, isSelected }) => css`
     user-select: none;
-    padding: 8px 16px;
     box-sizing: border-box;
     cursor: pointer;
+
+    padding: ${theme.tabsItemPadding};
     transition: color ${theme.animationTimeVeryFast}s ease-in-out;
 
     ${isSelected &&
@@ -50,8 +56,8 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
   const theme = useTheme();
 
   const {
-    onClick,
     defaultSelectedItem,
+    onClick,
     setActiveItem,
     selectedItem,
   } = React.useContext(TabsContext);
@@ -70,11 +76,13 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
       return;
     }
 
-    setActiveItem({
-      itemKey,
-      width: tabItemRef.current.offsetWidth,
-      x: tabItemRef.current.offsetLeft,
-    });
+    if (setActiveItem) {
+      setActiveItem({
+        itemKey,
+        width: tabItemRef.current.offsetWidth,
+        x: tabItemRef.current.offsetLeft,
+      });
+    }
   }, [setActiveItem, tabItemRef, itemKey]);
 
   // handles setting the default selected item
