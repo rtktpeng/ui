@@ -20,7 +20,7 @@ describe('Tabs', () => {
   it('sets the defaultSelectedItem prop', () => {
     const onTabClickMock = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <Tabs onTabClick={onTabClickMock} defaultSelectedItem="1">
         <Tabs.Item title={<div id="1" />} itemKey="1" />
         <Tabs.Item title={<div id="2" />} itemKey="2" />
@@ -29,6 +29,36 @@ describe('Tabs', () => {
     );
 
     expect(wrapper.find('Tabs').prop('defaultSelectedItem')).toBe('1');
+  });
+
+  it('sets the selectedItem prop', () => {
+    const onTabClickMock = jest.fn();
+
+    const wrapper = shallow(
+      <Tabs onTabClick={onTabClickMock} defaultSelectedItem="1">
+        <Tabs.Item title={<div id="1" />} itemKey="1" />
+        <Tabs.Item title={<div id="2" />} itemKey="2" />
+        <Tabs.Item title={<div id="3" />} itemKey="3" />
+      </Tabs>
+    );
+
+    wrapper.setProps({ selectedItem: '2' });
+
+    expect(wrapper.find('Tabs').prop('selectedItem')).toBe('2');
+  });
+
+  it('sets the title prop on Tabs.Item', () => {
+    const onTabClickMock = jest.fn();
+
+    const wrapper = mount(
+      <Tabs onTabClick={onTabClickMock} defaultSelectedItem="1">
+        <Tabs.Item title={<div id="tab-1">Tab 1</div>} itemKey="1" />
+        <Tabs.Item title={<div id="tab-2">Tab 2</div>} itemKey="2" />
+        <Tabs.Item title={<div id="tab-3">Tab 3</div>} itemKey="3" />
+      </Tabs>
+    );
+
+    expect(wrapper.exists('#tab-2')).toBe(true);
   });
 
   it('calls onTabClick with itemKey', () => {
