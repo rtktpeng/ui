@@ -20,7 +20,7 @@ describe('Tabs', () => {
   it('sets the defaultSelectedItem prop', () => {
     const onTabClickMock = jest.fn();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Tabs onTabClick={onTabClickMock} defaultSelectedItem="1">
         <Tabs.Item title={<div id="1" />} itemKey="1" />
         <Tabs.Item title={<div id="2" />} itemKey="2" />
@@ -34,7 +34,7 @@ describe('Tabs', () => {
   it('sets the selectedItem prop', () => {
     const onTabClickMock = jest.fn();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Tabs onTabClick={onTabClickMock} defaultSelectedItem="1">
         <Tabs.Item title={<div id="1" />} itemKey="1" />
         <Tabs.Item title={<div id="2" />} itemKey="2" />
