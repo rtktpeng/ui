@@ -24,8 +24,12 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'
+          scope: '@rtkwlf'
       - name: Configure .npmrc for publish to npm
-        run: 'echo "registry=https://registry.npmjs.com/\n//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc'
+        run: 'echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Publish to npm
