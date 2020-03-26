@@ -9,6 +9,7 @@ import { TabsContext } from './TabsContext';
 import { useTheme } from '../../hooks/useTheme';
 
 import { GlobalTheme } from '../../theme/types';
+import { Tabs } from './Tabs';
 
 export interface TabsItemProps {
   /** className of the tabs item component */
@@ -115,3 +116,5 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
     </Container>
   );
 };
+
+TabsItem.displayName = 'TabsItem';
