@@ -13,7 +13,7 @@ const Container = styled.div`
     border-radius: 4px;
     padding: 20px;
 
-    background: ${theme.colors.secondaryBackground};
+    background: ${theme.colors.primaryBackground};
   `};
 `;
 
