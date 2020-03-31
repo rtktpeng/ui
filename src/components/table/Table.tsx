@@ -11,12 +11,25 @@ import { Body } from './Body';
 export type Justify = 'flex-start' | 'center' | 'flex-end';
 
 export interface ColumnProps<T> {
+  /** unique key of the column */
   key: string | number;
+
+  /** title of the column */
   title: React.ReactNode;
+
+  /** the index of the data to render in the column */
   dataIndex?: string;
-  render?: (data: T) => React.ReactNode; // TODO: update the type of data here
+
+  /** allows for customization of what is rendered in the column where `data` is the record for the row */
+  render?: (data: T) => React.ReactNode;
+
+  /** choose how to align text/components in the column */
   justify?: Justify;
+
+  /** set the width to a percentage of total width of table */
   width?: number;
+
+  /** if true, the column will be sortable and be provided in the `onSort` callback when clicked */
   sortable?: boolean;
 }
 
@@ -25,7 +38,7 @@ export interface TableProps<T> {
   className?: string;
 
   /** array of columns to render */
-  columns: Array<ColumnProps<T>>;
+  columns: ColumnProps<T>[];
 
   /** data to show in the table where T is the type of data to show */
   data: T[];

@@ -27,16 +27,16 @@ const DownContainer = styled.span`
 
 export const Sort: React.FunctionComponent<SortProps> = ({ state }) => {
   const {
-    colors: { primary },
+    colors: { primary, description },
   } = useTheme();
 
   return (
     <Container>
       <UpContainer>
-        <SortUp color={state === 'asc' ? primary : undefined} />
+        <SortUp color={state === 'asc' ? primary : description} />
       </UpContainer>
       <DownContainer>
-        <SortDown color={state === 'dsc' ? primary : undefined} />
+        <SortDown color={state === 'dsc' ? primary : description} />
       </DownContainer>
     </Container>
   );
