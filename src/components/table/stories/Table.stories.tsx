@@ -1,12 +1,30 @@
 /* eslint-disable */
 import * as React from 'react';
 
+import styled from 'styled-components';
+
 import { Table, ColumnProps } from '../Table';
 
 import { Icon } from '../../icons/index';
 
 // @ts-ignore
 import mdx from './Table.mdx';
+
+const IconSpacer = styled.span`
+  margin-left: 16px;
+`;
+
+const Actions = () => (
+  <>
+    <span>
+      <Icon.Pencil />
+    </span>
+    <IconSpacer />
+    <span>
+      <Icon.Times />
+    </span>
+  </>
+);
 
 export default {
   title: 'Components/Table',
@@ -69,11 +87,7 @@ export const simple = () => {
     {
       key: 'actions',
       title: 'Actions',
-      render: () => (
-        <span>
-          <Icon.Times />
-        </span>
-      ),
+      render: () => <Actions />,
       width: 5,
       justify: 'flex-end',
     },
@@ -135,11 +149,7 @@ export const sortable = () => {
     {
       key: 'actions',
       title: 'Actions',
-      render: () => (
-        <span>
-          <Icon.Times />
-        </span>
-      ),
+      render: () => <Actions />,
       width: 5,
       justify: 'flex-end',
     },

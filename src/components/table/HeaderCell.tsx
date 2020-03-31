@@ -14,6 +14,10 @@ interface StyledCellProps {
   sortable?: boolean;
 }
 
+interface StyledSubtitleContentProps {
+  sortable?: boolean;
+}
+
 const getSortState = (currentState: string): SortState => {
   switch (currentState) {
     case 'none':
@@ -46,8 +50,10 @@ const StyledSubtitle = styled(Typography.Subtitle)`
   align-items: center;
 `;
 
-const SubtitleContent = styled.span`
-  margin-right: 8px;
+const SubtitleContent = styled.span<StyledSubtitleContentProps>`
+  ${({ sortable }) => css`
+    margin-right: ${sortable ? '8px' : 0};
+  `}
 `;
 
 export const HeaderCell: React.FunctionComponent<any> = ({
@@ -86,7 +92,7 @@ export const HeaderCell: React.FunctionComponent<any> = ({
       theme={theme}
     >
       <StyledSubtitle>
-        <SubtitleContent>{title}</SubtitleContent>
+        <SubtitleContent sortable={sortable}>{title}</SubtitleContent>
         {sortable && <Icon.Sort state={sortState} />}
       </StyledSubtitle>
     </StyledCell>

@@ -1,6 +1,7 @@
 import Check from './Check';
 import Loading from './Loading';
 import Minus from './Minus';
+import Pencil from './Pencil';
 import Plus from './Plus';
 import Sort from './Sort';
 import SortDown from './SortDown';
@@ -11,6 +12,7 @@ export const Icon = {
   Check,
   Loading,
   Minus,
+  Pencil,
   Plus,
   Sort,
   SortDown,
