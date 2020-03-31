@@ -40,12 +40,15 @@ const Container = styled.table`
 `;
 
 export const Table = <T extends any = any>(props: TableProps<T>) => {
+  const [sortColumn, setSortColumn] = React.useState(null);
+
   const { className, columns, data, onSort } = props;
 
   const handleSort = React.useCallback(
     (key, state) => {
       if (onSort) {
         onSort(key, state);
+        setSortColumn(key);
       }
     },
     [onSort]
@@ -53,7 +56,7 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
 
   return (
     <Container className={`${className} rtk-table`}>
-      <Header columns={columns} onSort={handleSort} />
+      <Header columns={columns} onSort={handleSort} sortColumn={sortColumn} />
       <Body columns={columns} data={data} />
     </Container>
   );

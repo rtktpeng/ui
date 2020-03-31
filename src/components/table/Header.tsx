@@ -15,6 +15,7 @@ import { HeaderCell } from './HeaderCell';
 export interface HeaderProps<T> {
   columns: ColumnProps<T>[];
   onSort: (key: string, state: SortState) => void;
+  sortColumn: any;
 }
 
 const TH = styled.th<{
@@ -30,7 +31,7 @@ const TH = styled.th<{
 `;
 
 export const Header = <T extends any = any>(props: HeaderProps<T>) => {
-  const { columns, onSort } = props;
+  const { columns, onSort, sortColumn } = props;
 
   const theme = useTheme();
 
@@ -46,6 +47,7 @@ export const Header = <T extends any = any>(props: HeaderProps<T>) => {
               title={col.title}
               onClick={onSort}
               sortable={col.sortable}
+              sortColumn={sortColumn}
               theme={theme}
             />
           </TH>

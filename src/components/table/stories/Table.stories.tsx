@@ -31,7 +31,7 @@ export const simple = () => {
     {
       key: '2',
       name: 'Jim Green',
-      age: 27,
+      age: 70,
       address: 'Ontario No. 1 Lake Park',
     },
     {
@@ -63,6 +63,7 @@ export const simple = () => {
       title: 'Age',
       width: 15,
       justify: 'center',
+      sortable: true,
     },
     {
       key: 'address',
@@ -82,7 +83,7 @@ export const simple = () => {
     },
   ];
 
-  const sortAlpabetical = (state, reverse) => {
+  const sortAlpabetical = reverse => {
     if (reverse) {
       return tableData.sort((b, a) => {
         return a.name.localeCompare(b.name);
@@ -93,11 +94,23 @@ export const simple = () => {
     });
   };
 
+  const sortNumerical = reverse => {
+    if (reverse) {
+      return tableData.sort((a, b) => b.age - a.age);
+    }
+    return tableData.sort((a, b) => a.age - b.age);
+  };
+
   const handleSort = React.useCallback(
     (column, state) => {
       switch (column) {
         case 'name': {
-          const newData = sortAlpabetical(state, state === 'dsc');
+          const newData = sortAlpabetical(state === 'dsc');
+          setTableData([...newData]);
+          break;
+        }
+        case 'age': {
+          const newData = sortNumerical(state === 'dsc');
           setTableData([...newData]);
           break;
         }

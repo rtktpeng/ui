@@ -57,6 +57,7 @@ export const HeaderCell: React.FunctionComponent<any> = ({
   title,
   onClick,
   sortable,
+  sortColumn,
   theme,
 }) => {
   const [sortState, setSortState] = React.useState<SortState>('none');
@@ -68,6 +69,13 @@ export const HeaderCell: React.FunctionComponent<any> = ({
       setSortState(newSortState);
     }
   }, [onClick, itemKey, sortState, sortable]);
+
+  // want to reset the sort state to remove the styles
+  React.useEffect(() => {
+    if (sortColumn !== itemKey) {
+      setSortState('none');
+    }
+  }, [itemKey, sortColumn]);
 
   return (
     <StyledCell
