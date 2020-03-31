@@ -3,14 +3,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Table } from '../Table';
+import { Table, ColumnProps } from '../Table';
 
 import { Icon } from '../../icons/index';
 
 // @ts-ignore
 import mdx from './Table.mdx';
-
-import { ColumnProps } from '../types';
 
 export default {
   title: 'Components/Table',
@@ -23,6 +21,27 @@ export default {
 };
 
 export const simple = () => {
+  const [tableData, setTableData] = React.useState<User[]>([
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 61,
+      address: 'British Columbia No. 1 Lake Park',
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 27,
+      address: 'Ontario No. 1 Lake Park',
+    },
+    {
+      key: '3',
+      name: 'Joe Flack',
+      age: 40,
+      address: 'Winnepeg No. 1 Lake Park',
+    },
+  ]);
+
   interface User {
     key: string | number;
     name: string;
@@ -30,12 +49,13 @@ export const simple = () => {
     address: string;
   }
 
-  const columns: ColumnProps[] = [
+  const columns: ColumnProps<User>[] = [
     {
       key: 'name',
       dataIndex: 'name',
       title: 'Name',
       width: 15,
+      sortable: true,
     },
     {
       key: 'age',
@@ -62,26 +82,29 @@ export const simple = () => {
     },
   ];
 
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 61,
-      address: 'British Columbia No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 27,
-      address: 'Ontario No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Flack',
-      age: 40,
-      address: 'Winnepeg No. 1 Lake Park',
-    },
-  ];
+  const sortAlpabetical = (state, reverse) => {
+    if (reverse) {
+      return tableData.sort((b, a) => {
+        return a.name.localeCompare(b.name);
+      });
+    }
+    return tableData.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+  };
 
-  return <Table<User> data={data} columns={columns} />;
+  const handleSort = React.useCallback(
+    (column, state) => {
+      switch (column) {
+        case 'name': {
+          const newData = sortAlpabetical(state, state === 'dsc');
+          setTableData([...newData]);
+          break;
+        }
+      }
+    },
+    [tableData, setTableData]
+  );
+
+  return <Table<User> data={tableData} columns={columns} onSort={handleSort} />;
 };

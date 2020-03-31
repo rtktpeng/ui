@@ -2,18 +2,19 @@ import * as React from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { ColumnProps } from './types';
+import { SortState } from '../icons';
 
-import { Typography } from '../typography/Typography';
+import { ColumnProps } from './Table';
 
 import { useTheme } from '../../hooks/useTheme';
 
 import { GlobalTheme } from '../../theme/types';
 
-import { Cell } from './Cell';
+import { HeaderCell } from './HeaderCell';
 
-export interface HeaderProps {
-  columns: ColumnProps[];
+export interface HeaderProps<T> {
+  columns: ColumnProps<T>[];
+  onSort: (key: string, state: SortState) => void;
 }
 
 const TH = styled.th<{
@@ -28,7 +29,9 @@ const TH = styled.th<{
   `}
 `;
 
-const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ columns }) => {
+export const Header = <T extends any = any>(props: HeaderProps<T>) => {
+  const { columns, onSort } = props;
+
   const theme = useTheme();
 
   return (
@@ -36,21 +39,20 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ columns }) => {
       <tr>
         {columns.map(col => (
           <TH key={col.key} theme={theme} width={col.width}>
-            <Cell justify={col.justify} header>
-              <Typography.Subtitle>{col.title}</Typography.Subtitle>
-            </Cell>
+            <HeaderCell
+              header
+              itemKey={col.key}
+              justify={col.justify}
+              title={col.title}
+              onClick={onSort}
+              sortable={col.sortable}
+              theme={theme}
+            />
           </TH>
         ))}
       </tr>
     </thead>
   );
 };
-
-// we want to reduce the need for a rerender if the columns havent changed.
-const propsAreEqual = (prevProps, nextProps) => {
-  return prevProps.columns === nextProps.columns;
-};
-
-export const Header = React.memo(HeaderComponent, propsAreEqual);
 
 Header.displayName = 'TableHeader';

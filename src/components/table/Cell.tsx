@@ -6,11 +6,13 @@ import { useTheme } from '../../hooks/useTheme';
 
 import { GlobalTheme } from '../../theme/types';
 
-import { Justify } from './types';
+import { Justify } from './Table';
 
 interface CellProps {
+  className?: string;
   header?: boolean;
   justify?: Justify;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 interface StyledCellProps {
@@ -22,6 +24,7 @@ interface StyledCellProps {
 const StyledCell = styled.div<StyledCellProps>`
   ${({ theme, justify, header }) => css`
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: ${justify || 'flex-start'};
 
@@ -35,13 +38,29 @@ const StyledCell = styled.div<StyledCellProps>`
 `;
 
 export const Cell: React.FunctionComponent<CellProps> = ({
+  className,
   children,
   justify,
+  onClick,
 }) => {
   const theme = useTheme();
 
+  const handleClick = React.useCallback(
+    e => {
+      if (onClick) {
+        onClick(e);
+      }
+    },
+    [onClick]
+  );
+
   return (
-    <StyledCell theme={theme} justify={justify}>
+    <StyledCell
+      className={className}
+      onClick={handleClick}
+      theme={theme}
+      justify={justify}
+    >
       {children}
     </StyledCell>
   );
