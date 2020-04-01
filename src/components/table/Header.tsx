@@ -54,4 +54,4 @@ export const Header = <T extends any = any>(props: HeaderProps<T>) => {
   );
 };
 
-Header.displayName = 'TableHeader';
+Header.displayName = 'TableHead';

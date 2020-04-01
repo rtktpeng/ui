@@ -35,7 +35,7 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
     if (column.dataIndex == null) {
       // eslint-disable-next-line no-console
       console.warn(
-        `You must supply a dataIndex or render function for column: ${column.name}`
+        `You must supply a dataIndex or render function for column: ${column.key}`
       );
       return null;
     } else {
@@ -61,3 +61,5 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
     </tbody>
   );
 };
+
+Body.displayName = 'TableBody';

@@ -6,6 +6,6 @@ import { ColumnProps } from '../Table';
 
 interface T {}
 
-export const DummyColumn: React.FunctionComponent<ColumnProps<T>> = () => {
+export const Column: React.FunctionComponent<ColumnProps<T>> = () => {
   return null;
 };

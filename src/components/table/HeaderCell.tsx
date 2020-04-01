@@ -44,7 +44,7 @@ const getSortState = (currentState: string): SortState => {
 
 const StyledCell = styled(Cell)<StyledCellProps>`
   ${({ theme, sortable }) => css`
-    transition: background 0.2s ease-in-out;
+    transition: background ${theme.animationTimeFast}s ease-in-out;
 
     ${sortable &&
       css`
