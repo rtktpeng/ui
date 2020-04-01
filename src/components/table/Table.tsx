@@ -74,7 +74,7 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
         onSort={handleSort}
         sortColumn={sortColumn}
       />
-      <Body<T> columns={columns} data={data} />
+      <Body<T> columns={columns} data={[]} />
     </Container>
   );
 };

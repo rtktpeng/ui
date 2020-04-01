@@ -43,23 +43,33 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
     }
   }, []);
 
-  return (
-    <tbody>
-      {data.map(d => (
-        <tr key={d.key}>
-          {columns.map(c => (
-            <TD key={c.key} theme={theme}>
-              <Cell justify={c.justify}>
-                <Typography.Body>
-                  {c.render == null ? renderDataIndex(c, d) : c.render(d)}
-                </Typography.Body>
-              </Cell>
-            </TD>
-          ))}
+  const renderBodyCell = React.useCallback(() => {
+    if (data.length === 0) {
+      return (
+        <tr>
+          <td colSpan={columns.length}>
+            <div style={{ height: '100px' }}>foo</div>
+          </td>
         </tr>
-      ))}
-    </tbody>
-  );
+      );
+    }
+
+    return data.map(d => (
+      <tr key={d.key}>
+        {columns.map(c => (
+          <TD key={c.key} theme={theme}>
+            <Cell justify={c.justify}>
+              <Typography.Body>
+                {c.render == null ? renderDataIndex(c, d) : c.render(d)}
+              </Typography.Body>
+            </Cell>
+          </TD>
+        ))}
+      </tr>
+    ));
+  }, [data, columns, renderDataIndex, theme]);
+
+  return <tbody>{renderBodyCell()}</tbody>;
 };
 
 Body.displayName = 'TableBody';
