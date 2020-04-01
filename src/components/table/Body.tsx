@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { useTheme } from '../../hooks/useTheme';
+
 import { Typography } from '../typography/Typography';
 
 import { Cell } from './Cell';
@@ -27,6 +29,8 @@ const TD = styled.td<{
 export const Body = <T extends any = any>(props: BodyProps<T>) => {
   const { columns, data } = props;
 
+  const theme = useTheme();
+
   const renderDataIndex = React.useCallback((column, data) => {
     if (column.dataIndex == null) {
       // eslint-disable-next-line no-console
@@ -44,7 +48,7 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
       {data.map(d => (
         <tr key={d.key}>
           {columns.map(c => (
-            <TD key={c.key}>
+            <TD key={c.key} theme={theme}>
               <Cell justify={c.justify}>
                 <Typography.Body>
                   {c.render == null ? renderDataIndex(c, d) : c.render(d)}

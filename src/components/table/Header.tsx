@@ -40,13 +40,10 @@ export const Header = <T extends any = any>(props: HeaderProps<T>) => {
       <tr>
         {columns.map(col => (
           <TH key={col.key} theme={theme} width={col.width}>
-            <HeaderCell
+            <HeaderCell<T>
               header
-              itemKey={col.key}
-              justify={col.justify}
-              title={col.title}
+              column={col}
               onClick={onSort}
-              sortable={col.sortable}
               sortColumn={sortColumn}
               theme={theme}
             />

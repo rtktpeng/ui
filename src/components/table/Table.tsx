@@ -20,8 +20,8 @@ export interface ColumnProps<T> {
   /** the index of the data to render in the column */
   dataIndex?: string;
 
-  /** allows for customization of what is rendered in the column where `data` is the record for the row */
-  render?: (data: T) => React.ReactNode;
+  /** allows for customization of what is rendered in the column where `record` is the record for the row */
+  render?: (record: T) => React.ReactNode;
 
   /** choose how to align text/components in the column */
   justify?: Justify;
@@ -58,10 +58,10 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
   const { className, columns, data, onSort } = props;
 
   const handleSort = React.useCallback(
-    (key, state) => {
+    (itemKey, state) => {
       if (onSort) {
-        onSort(key, state);
-        setSortColumn(key);
+        onSort(itemKey, state);
+        setSortColumn(itemKey);
       }
     },
     [onSort]

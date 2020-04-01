@@ -6,20 +6,17 @@ import { Typography } from '../typography/Typography';
 
 import { Icon, SortState } from '../icons';
 
-import { Justify } from './Table';
+import { ColumnProps } from './Table';
 
 import { GlobalTheme } from '../../theme/types';
 
 import { Cell } from './Cell';
 
-interface HeaderCellProps {
-  justify?: Justify;
+interface HeaderCellProps<T> {
+  column: ColumnProps<T>;
   header?: boolean;
-  itemKey: string | number;
-  title: React.ReactNode;
   onClick: (key: string | number, state: SortState) => void;
-  sortable?: boolean;
-  sortColumn: string | number;
+  sortColumn?: string | number;
   theme: GlobalTheme;
 }
 
@@ -70,44 +67,39 @@ const SubtitleContent = styled.span<StyledSubtitleContentProps>`
   `}
 `;
 
-export const HeaderCell: React.FunctionComponent<HeaderCellProps> = ({
-  justify,
-  header,
-  itemKey,
-  title,
-  onClick,
-  sortable,
-  sortColumn,
-  theme,
-}) => {
+export const HeaderCell = <T extends any = any>(props: HeaderCellProps<T>) => {
+  const { column, header, onClick, sortColumn, theme } = props;
+
   const [sortState, setSortState] = React.useState<SortState>('none');
 
   const handleClick = React.useCallback(() => {
-    if (sortable) {
+    if (column.sortable) {
       const newSortState = getSortState(sortState);
-      onClick(itemKey, newSortState);
+      onClick(column.key, newSortState);
       setSortState(newSortState);
     }
-  }, [onClick, itemKey, sortState, sortable]);
+  }, [onClick, column, sortState]);
 
   // reset the sort state to remove the styles when the sorted column changes
   React.useEffect(() => {
-    if (sortColumn !== itemKey) {
+    if (sortColumn !== column.key) {
       setSortState('none');
     }
-  }, [itemKey, sortColumn]);
+  }, [column.key, sortColumn]);
 
   return (
     <StyledCell
-      sortable={sortable}
+      sortable={column.sortable}
       onClick={handleClick}
-      justify={justify}
+      justify={column.justify}
       header={header}
       theme={theme}
     >
       <StyledSubtitle>
-        <SubtitleContent sortable={sortable}>{title}</SubtitleContent>
-        {sortable && <Icon.Sort state={sortState} />}
+        <SubtitleContent sortable={column.sortable}>
+          {column.title}
+        </SubtitleContent>
+        {column.sortable && <Icon.Sort state={sortState} />}
       </StyledSubtitle>
     </StyledCell>
   );
