@@ -29,9 +29,10 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
 
   const renderDataIndex = React.useCallback((column, data) => {
     if (column.dataIndex == null) {
+      // eslint-disable-next-line no-console
       console.warn(
         `You must supply a dataIndex or render function for column: ${column.name}`
-      ); // eslint-disable-line no-console
+      );
       return null;
     } else {
       return data[column.dataIndex];
