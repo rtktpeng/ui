@@ -70,7 +70,12 @@ export { GlobalTheme, Colors } from './theme/types';
 
 export { ThemeProvider, ThemeContext } from './styled';
 
-export { Table, TableProps, ColumnProps } from './components/table/Table';
+export {
+  Table,
+  TableProps,
+  ColumnProps,
+  Justify,
+} from './components/table/Table';
 
 export {
   Tabs,
