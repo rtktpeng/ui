@@ -6,7 +6,14 @@ import { Typography } from '../typography/Typography';
 
 import { Cell } from './Cell';
 
+import { ColumnProps } from './Table';
+
 import { GlobalTheme } from '../../theme/types';
+
+interface BodyProps<T> {
+  columns: ColumnProps<T>[];
+  data: T[];
+}
 
 const TD = styled.td<{
   theme: GlobalTheme;
@@ -17,16 +24,29 @@ const TD = styled.td<{
   `}
 `;
 
-export const Body: React.FunctionComponent<any> = ({ columns, data }) => {
+export const Body = <T extends any = any>(props: BodyProps<T>) => {
+  const { columns, data } = props;
+
+  const renderDataIndex = React.useCallback((column, data) => {
+    if (column.dataIndex == null) {
+      console.warn(
+        `You must supply a dataIndex or render function for column: ${column.name}`
+      ); // eslint-disable-line no-console
+      return null;
+    } else {
+      return data[column.dataIndex];
+    }
+  }, []);
+
   return (
     <tbody>
       {data.map(d => (
         <tr key={d.key}>
           {columns.map(c => (
-            <TD key={c.key} align={c.align}>
+            <TD key={c.key}>
               <Cell justify={c.justify}>
                 <Typography.Body>
-                  {c.render ? c.render(d[c.dataIndex]) : d[c.dataIndex]}
+                  {c.render == null ? renderDataIndex(c, d) : c.render(d)}
                 </Typography.Body>
               </Cell>
             </TD>

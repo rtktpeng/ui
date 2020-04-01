@@ -69,8 +69,12 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
 
   return (
     <Container className={`${className} rtk-table`}>
-      <Header columns={columns} onSort={handleSort} sortColumn={sortColumn} />
-      <Body columns={columns} data={data} />
+      <Header<T>
+        columns={columns}
+        onSort={handleSort}
+        sortColumn={sortColumn}
+      />
+      <Body<T> columns={columns} data={data} />
     </Container>
   );
 };

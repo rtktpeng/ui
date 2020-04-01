@@ -5,9 +5,23 @@ import styled, { css } from 'styled-components';
 import { Typography } from '../typography/Typography';
 
 import { Icon, SortState } from '../icons';
+
+import { Justify } from './Table';
+
 import { GlobalTheme } from '../../theme/types';
 
 import { Cell } from './Cell';
+
+interface HeaderCellProps {
+  justify?: Justify;
+  header?: boolean;
+  itemKey: string | number;
+  title: React.ReactNode;
+  onClick: (key: string | number, state: SortState) => void;
+  sortable?: boolean;
+  sortColumn: string | number;
+  theme: GlobalTheme;
+}
 
 interface StyledCellProps {
   theme: GlobalTheme;
@@ -56,7 +70,7 @@ const SubtitleContent = styled.span<StyledSubtitleContentProps>`
   `}
 `;
 
-export const HeaderCell: React.FunctionComponent<any> = ({
+export const HeaderCell: React.FunctionComponent<HeaderCellProps> = ({
   justify,
   header,
   itemKey,
@@ -76,7 +90,7 @@ export const HeaderCell: React.FunctionComponent<any> = ({
     }
   }, [onClick, itemKey, sortState, sortable]);
 
-  // want to reset the sort state to remove the styles
+  // reset the sort state to remove the styles when the sorted column changes
   React.useEffect(() => {
     if (sortColumn !== itemKey) {
       setSortState('none');

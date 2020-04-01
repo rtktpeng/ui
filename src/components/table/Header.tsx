@@ -14,7 +14,7 @@ import { HeaderCell } from './HeaderCell';
 
 export interface HeaderProps<T> {
   columns: ColumnProps<T>[];
-  onSort: (key: string, state: SortState) => void;
+  onSort: (key: string | number, state: SortState) => void;
   sortColumn: any;
 }
 
