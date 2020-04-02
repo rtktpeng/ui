@@ -42,12 +42,7 @@ const theme2 = createTheme(
     description: '#FFFFFF',
     label: '#FFFFFF',
   },
-  {
-    typographyTitleFontFamily: 'Helvetica Neue',
-    buttonPrimaryColor: 'black',
-    buttonPrimaryHoverColor: 'black',
-    buttonPrimaryActiveColor: 'black',
-  }
+  {}
 );
 
 const themes = {
