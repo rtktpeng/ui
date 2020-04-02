@@ -43,6 +43,9 @@ export interface TableProps<T> {
   /** data to show in the table where T is the type of data to show */
   data: T[];
 
+  /** component to render when there is no data to show in the table */
+  emptyState?: React.ReactNode;
+
   /** callback that is called when a column is clicked to sort */
   onSort?: (key: string, state: SortState) => void;
 }
@@ -55,7 +58,7 @@ const Container = styled.table`
 export const Table = <T extends any = any>(props: TableProps<T>) => {
   const [sortColumn, setSortColumn] = React.useState(null);
 
-  const { className, columns, data, onSort } = props;
+  const { className, columns, data, emptyState, onSort } = props;
 
   const handleSort = React.useCallback(
     (itemKey, state) => {
@@ -74,7 +77,7 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
         onSort={handleSort}
         sortColumn={sortColumn}
       />
-      <Body<T> columns={columns} data={[]} />
+      <Body<T> columns={columns} data={data} emptyState={emptyState} />
     </Container>
   );
 };

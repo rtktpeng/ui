@@ -196,6 +196,7 @@ export interface GlobalTheme {
   panelHoverBoxShadow: string;
 
   // ---- Table ---- //
+  tableEmptyContainerHeight: string;
   tableHeadCellPadding: string;
   tableHeadBorder: string;
   tableHeadBorderColor: string;

@@ -193,3 +193,50 @@ export const sortable = () => {
 
   return <Table<User> data={tableData} columns={columns} onSort={handleSort} />;
 };
+
+export const empty = () => {
+  interface User {
+    key: string | number;
+    name: string;
+    age: number;
+    address: string;
+  }
+
+  const columns: ColumnProps<User>[] = [
+    {
+      key: 'name',
+      dataIndex: 'name',
+      title: 'Name',
+      width: 15,
+      sortable: true,
+    },
+    {
+      key: 'age',
+      dataIndex: 'age',
+      title: 'Age',
+      width: 15,
+      justify: 'center',
+      sortable: true,
+    },
+    {
+      key: 'address',
+      dataIndex: 'address',
+      title: 'Address',
+    },
+    {
+      key: 'actions',
+      title: 'Actions',
+      render: () => <Actions />,
+      width: 5,
+      justify: 'flex-end',
+    },
+  ];
+
+  return (
+    <Table
+      data={[]}
+      columns={columns}
+      emptyState={<div>It appears you have no users.</div>}
+    />
+  );
+};

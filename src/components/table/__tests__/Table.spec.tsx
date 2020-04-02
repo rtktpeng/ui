@@ -60,6 +60,14 @@ describe('Table', () => {
     expect(wrapper.find('#test')).toExist();
   });
 
+  it('renders a the empty state when there is no data', () => {
+    const wrapper = mount(
+      <Table columns={columns} data={data} emptyState={<div id="test" />} />
+    );
+
+    expect(wrapper.find('#test')).toExist();
+  });
+
   it('calls onSort callback with the key and state', () => {
     const onSortMock: any = jest.fn();
 

@@ -171,6 +171,7 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   panelHoverBoxShadow: `0px 7px 21px ${rgba(themeColors.black, 0.07)}`,
 
   // ---- Table ---- //
+  tableEmptyContainerHeight: '100px',
   tableHeadBorder: '2px solid',
   tableHeadBorderColor: themeColors.tableBorder,
   tableHeadCellPadding: '8px 16px',

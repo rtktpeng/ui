@@ -15,6 +15,7 @@ import { GlobalTheme } from '../../theme/types';
 interface BodyProps<T> {
   columns: ColumnProps<T>[];
   data: T[];
+  emptyState?: React.ReactNode;
 }
 
 const TD = styled.td<{
@@ -26,8 +27,18 @@ const TD = styled.td<{
   `}
 `;
 
+const EmptyContentContainer = styled.div`
+  ${({ theme }) => css`
+    height: ${theme.tableEmptyContainerHeight};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `}
+`;
+
 export const Body = <T extends any = any>(props: BodyProps<T>) => {
-  const { columns, data } = props;
+  const { columns, data, emptyState } = props;
 
   const theme = useTheme();
 
@@ -47,9 +58,13 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
     if (data.length === 0) {
       return (
         <tr>
-          <td colSpan={columns.length}>
-            <div style={{ height: '100px' }}>foo</div>
-          </td>
+          <TD colSpan={columns.length}>
+            <EmptyContentContainer theme={theme}>
+              <Typography.Body>
+                {emptyState == null ? 'No Data' : emptyState}
+              </Typography.Body>
+            </EmptyContentContainer>
+          </TD>
         </tr>
       );
     }
@@ -67,7 +82,7 @@ export const Body = <T extends any = any>(props: BodyProps<T>) => {
         ))}
       </tr>
     ));
-  }, [data, columns, renderDataIndex, theme]);
+  }, [data, columns, emptyState, renderDataIndex, theme]);
 
   return <tbody>{renderBodyCell()}</tbody>;
 };
