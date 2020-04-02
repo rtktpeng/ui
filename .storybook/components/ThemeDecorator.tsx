@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { rgba } from 'polished';
+
 import { ThemeProvider } from '../../src/styled';
 
 import { Button } from '../../src/components/button/Button';
@@ -28,14 +30,17 @@ const theme1 = createTheme({}, {});
 
 const theme2 = createTheme(
   {
-    primary: 'orange',
-    primaryBackground: '#484f5e',
+    primaryBackground: '#2D2D2D',
     secondary: '#ad7101',
-    secondaryBackground: '#1F2728',
+    secondaryBackground: '#1B1B1B',
+    tertiary: 'red',
+    tertiaryBackground: rgba('#FFFFFF', 0.03),
     border: '#5C5F68',
     title: '#EFEFEF',
     subtitle: '#EFEFEF',
-    body: '#C9C7C7',
+    body: '#FFFFFF',
+    description: '#FFFFFF',
+    label: '#FFFFFF',
   },
   {
     typographyTitleFontFamily: 'Helvetica Neue',
