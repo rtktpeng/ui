@@ -56,7 +56,7 @@ const Container = styled.table`
 `;
 
 export const Table = <T extends any = any>(props: TableProps<T>) => {
-  const [sortColumn, setSortColumn] = React.useState(null);
+  const [sortedColumn, setSortedColumn] = React.useState(null);
 
   const { className, columns, data, emptyState, onSort } = props;
 
@@ -64,7 +64,7 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
     (itemKey, state) => {
       if (onSort) {
         onSort(itemKey, state);
-        setSortColumn(itemKey);
+        setSortedColumn(itemKey);
       }
     },
     [onSort]
@@ -75,7 +75,7 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
       <Header<T>
         columns={columns}
         onSort={handleSort}
-        sortColumn={sortColumn}
+        sortedColumn={sortedColumn}
       />
       <Body<T> columns={columns} data={data} emptyState={emptyState} />
     </Container>

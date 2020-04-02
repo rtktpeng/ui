@@ -4,8 +4,6 @@ import Minus from './Minus';
 import Pencil from './Pencil';
 import Plus from './Plus';
 import Sort from './Sort';
-import SortDown from './SortDown';
-import SortUp from './SortUp';
 import Times from './Times';
 
 export const Icon = {
@@ -15,8 +13,6 @@ export const Icon = {
   Pencil,
   Plus,
   Sort,
-  SortDown,
-  SortUp,
   Times,
 };
 

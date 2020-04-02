@@ -2,10 +2,12 @@ import * as React from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { useTheme } from '../../hooks/useTheme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import SortUp from './SortUp';
-import SortDown from './SortDown';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons/faSortDown';
+import { faSortUp } from '@fortawesome/free-solid-svg-icons/faSortUp';
+
+import { useTheme } from '../../hooks/useTheme';
 
 export type SortState = 'none' | 'asc' | 'dsc';
 
@@ -33,10 +35,16 @@ export const Sort: React.FunctionComponent<SortProps> = ({ state }) => {
   return (
     <Container>
       <UpContainer>
-        <SortUp color={state === 'asc' ? primary : description} />
+        <FontAwesomeIcon
+          icon={faSortUp}
+          color={state === 'asc' ? primary : description}
+        />
       </UpContainer>
       <DownContainer>
-        <SortDown color={state === 'dsc' ? primary : description} />
+        <FontAwesomeIcon
+          icon={faSortDown}
+          color={state === 'dsc' ? primary : description}
+        />
       </DownContainer>
     </Container>
   );

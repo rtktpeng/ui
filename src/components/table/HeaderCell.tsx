@@ -16,7 +16,7 @@ interface HeaderCellProps<T> {
   column: ColumnProps<T>;
   header?: boolean;
   onClick: (key: string | number, state: SortState) => void;
-  sortColumn?: string | number;
+  sortedColumn?: string | number;
   theme: GlobalTheme;
 }
 
@@ -68,7 +68,7 @@ const SubtitleContent = styled.span<StyledSubtitleContentProps>`
 `;
 
 export const HeaderCell = <T extends any = any>(props: HeaderCellProps<T>) => {
-  const { column, header, onClick, sortColumn, theme } = props;
+  const { column, header, onClick, sortedColumn, theme } = props;
 
   const [sortState, setSortState] = React.useState<SortState>('none');
 
@@ -82,10 +82,10 @@ export const HeaderCell = <T extends any = any>(props: HeaderCellProps<T>) => {
 
   // reset the sort state to remove the styles when the sorted column changes
   React.useEffect(() => {
-    if (sortColumn !== column.key) {
+    if (sortedColumn !== column.key) {
       setSortState('none');
     }
-  }, [column.key, sortColumn]);
+  }, [column.key, sortedColumn]);
 
   return (
     <StyledCell
