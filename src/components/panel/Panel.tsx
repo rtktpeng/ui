@@ -24,6 +24,7 @@ export interface PanelProps {
 
 interface StyledContainerProps {
   hasMargin?: boolean;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   theme: GlobalTheme;
 }
 
