@@ -236,7 +236,76 @@ export const empty = () => {
     <Table
       data={[]}
       columns={columns}
-      emptyState={<div>It appears you have no users.</div>}
+      emptyComponent={<div>It appears you have no users.</div>}
+    />
+  );
+};
+
+export const loading = () => {
+  interface User {
+    key: string | number;
+    name: string;
+    age: number;
+    address: string;
+  }
+
+  const [tableData, setTableData] = React.useState<User[]>([
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 61,
+      address: 'British Columbia No. 1 Lake Park',
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 70,
+      address: 'Ontario No. 1 Lake Park',
+    },
+    {
+      key: '3',
+      name: 'Joe Flack',
+      age: 40,
+      address: 'Winnepeg No. 1 Lake Park',
+    },
+  ]);
+
+  const columns: ColumnProps<User>[] = [
+    {
+      key: 'name',
+      dataIndex: 'name',
+      title: 'Name',
+      width: 15,
+      sortable: true,
+    },
+    {
+      key: 'age',
+      dataIndex: 'age',
+      title: 'Age',
+      width: 15,
+      justify: 'center',
+      sortable: true,
+    },
+    {
+      key: 'address',
+      dataIndex: 'address',
+      title: 'Address',
+    },
+    {
+      key: 'actions',
+      title: 'Actions',
+      render: () => <Actions />,
+      width: 5,
+      justify: 'flex-end',
+    },
+  ];
+
+  return (
+    <Table
+      data={tableData}
+      columns={columns}
+      loading
+      loadingComponent={<div>Loading....</div>}
     />
   );
 };
