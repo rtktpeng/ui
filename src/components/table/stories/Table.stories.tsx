@@ -7,11 +7,17 @@ import { Table, ColumnProps } from '../Table';
 
 import { Icon } from '../../icons/index';
 
+import { Button } from '../../button/Button';
+
 // @ts-ignore
 import mdx from './Table.mdx';
 
 const IconSpacer = styled.span`
   margin-left: 16px;
+`;
+
+const ButtonSpacer = styled.div`
+  height: 16px;
 `;
 
 const Actions = () => (
@@ -249,6 +255,15 @@ export const loading = () => {
     address: string;
   }
 
+  const [loading, setLoading] = React.useState(false);
+
+  const fetchData = React.useCallback(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   const [tableData, setTableData] = React.useState<User[]>([
     {
       key: '1',
@@ -276,7 +291,6 @@ export const loading = () => {
       dataIndex: 'name',
       title: 'Name',
       width: 15,
-      sortable: true,
     },
     {
       key: 'age',
@@ -284,7 +298,6 @@ export const loading = () => {
       title: 'Age',
       width: 15,
       justify: 'center',
-      sortable: true,
     },
     {
       key: 'address',
@@ -301,11 +314,12 @@ export const loading = () => {
   ];
 
   return (
-    <Table
-      data={tableData}
-      columns={columns}
-      loading
-      loadingComponent={<div>Loading....</div>}
-    />
+    <>
+      <Button loading={loading} onClick={fetchData}>
+        Fetch Data
+      </Button>
+      <ButtonSpacer />
+      <Table data={tableData} columns={columns} loading={loading} />
+    </>
   );
 };

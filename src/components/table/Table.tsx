@@ -2,11 +2,14 @@ import * as React from 'react';
 
 import styled from 'styled-components';
 
+import { AnimatePresence } from 'framer-motion';
+
 import { SortState } from '../icons';
 
 import { Header } from './Header';
 
 import { Body } from './Body';
+import { TableLoading } from './TableLoading';
 
 export type Justify = 'flex-start' | 'center' | 'flex-end';
 
@@ -57,6 +60,7 @@ export interface TableProps<T> {
 }
 
 const Container = styled.table`
+  position: relative;
   width: 100%;
   border-spacing: 0;
 `;
@@ -86,18 +90,15 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
 
   return (
     <Container className={`${className} rtk-table`}>
+      <AnimatePresence>
+        {loading && <TableLoading loadingComponent={loadingComponent} />}
+      </AnimatePresence>
       <Header<T>
         columns={columns}
         onSort={handleSort}
         sortedColumn={sortedColumn}
       />
-      <Body<T>
-        columns={columns}
-        data={data}
-        emptyComponent={emptyComponent}
-        loading={loading}
-        loadingComponent={loadingComponent}
-      />
+      <Body<T> columns={columns} data={data} emptyComponent={emptyComponent} />
     </Container>
   );
 };
