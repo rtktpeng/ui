@@ -71,7 +71,7 @@ export const TableLoading: React.FunctionComponent<TableLoadingProps> = ({
       <LoadingMask theme={theme} />
       <LoadingText theme={theme}>
         <LoadingIcon />
-        {loadingComponent == null ? 'loading...' : loadingComponent}
+        {loadingComponent == null ? 'Loading Data...' : loadingComponent}
       </LoadingText>
     </LoadingContainer>
   );

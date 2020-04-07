@@ -49,7 +49,7 @@ export interface TableProps<T> {
   /** component to render when there is no data to show in the table */
   emptyComponent?: React.ReactNode;
 
-  /** component to render when there is data in the table is being fetched */
+  /** if true, the table will be in a loading state */
   loading?: boolean;
 
   /** component to render when there is data in the table is being fetched */
@@ -59,8 +59,11 @@ export interface TableProps<T> {
   onSort?: (key: string, state: SortState) => void;
 }
 
-const Container = styled.table`
+const Container = styled.div`
   position: relative;
+`;
+
+const TableContainer = styled.table`
   width: 100%;
   border-spacing: 0;
 `;
@@ -93,12 +96,18 @@ export const Table = <T extends any = any>(props: TableProps<T>) => {
       <AnimatePresence>
         {loading && <TableLoading loadingComponent={loadingComponent} />}
       </AnimatePresence>
-      <Header<T>
-        columns={columns}
-        onSort={handleSort}
-        sortedColumn={sortedColumn}
-      />
-      <Body<T> columns={columns} data={data} emptyComponent={emptyComponent} />
+      <TableContainer>
+        <Header<T>
+          columns={columns}
+          onSort={handleSort}
+          sortedColumn={sortedColumn}
+        />
+        <Body<T>
+          columns={columns}
+          data={data}
+          emptyComponent={emptyComponent}
+        />
+      </TableContainer>
     </Container>
   );
 };
