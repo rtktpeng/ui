@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { position } from './placements';
 
-export const FooContainer = styled.span`
+export const FooContainer = styled.div`
   ${({ position }: { position: position }) => css`
     position: relative;
 

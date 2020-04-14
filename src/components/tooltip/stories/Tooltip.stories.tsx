@@ -21,7 +21,7 @@ export default {
 };
 
 export const simple = () => (
-  <Tooltip position={'left'} overlay={<div>asdasdf</div>}>
+  <Tooltip position={'bottom'} overlay={<div>asdasdf</div>}>
     <Button>Hover Me</Button>
   </Tooltip>
 );

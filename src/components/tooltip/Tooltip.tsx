@@ -22,7 +22,8 @@ export interface TooltipProps {
   overlay?: React.ReactNode;
 }
 
-const Container = styled.span`
+const Container = styled.div`
+  display: inline-block;
   cursor: pointer;
   box-sizing: border-box;
 `;

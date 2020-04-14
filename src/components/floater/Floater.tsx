@@ -132,7 +132,10 @@ export const Floater: React.FunctionComponent<FloaterProps> = props => {
             }}
             {...animationProps}
           >
-            <Container portalVisibility={portalVisibility}>
+            <Container
+              portalVisibility={portalVisibility}
+              className="rtk-floater"
+            >
               {children}
             </Container>
           </motion.div>
