@@ -55,7 +55,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
       <Floater
         anchorElement={fooRef.current}
         position={placements[position].position}
-        open={open && fooRef !== null}
+        open={true && fooRef !== null}
       >
         <FooContainer position={position}>
           <Arrow position={position} />
