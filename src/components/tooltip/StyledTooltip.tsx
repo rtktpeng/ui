@@ -44,8 +44,6 @@ export const OverlayContainer = styled.div`
   background: white;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
-  min-width: 200px;
-  min-height: 200px;
 `;
 
 export const Arrow = styled.div`
@@ -57,28 +55,28 @@ export const Arrow = styled.div`
     /* Arrow pointing down */
     ${position === 'top' &&
       css`
-        top: 0px;
-        right: 10px;
-        border-bottom: 8px solid blue;
+        bottom: 0px;
+        left: calc(50% - 8px);
+        border-top: 8px solid blue;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
       `}
 
-    /* Arrow pointing up */
+    /* Arrow pointing left */
     ${position === 'right' &&
       css`
-        top: 50%;
-        right: 0px;
-        border-bottom: 8px solid blue;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
+        top: calc(50% - 8px);
+        left: 0px;
+        border-bottom: 8px solid transparent;
+        border-top: 8px solid transparent;
+        border-right: 8px solid blue;
       `}
 
     /* Arrow pointing up */
     ${position === 'bottom' &&
       css`
         top: 0px;
-        right: 10px;
+        left: calc(50% - 8px);
         border-bottom: 8px solid blue;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
