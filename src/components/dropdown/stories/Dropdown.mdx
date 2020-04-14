@@ -1,0 +1,19 @@
+import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Title, SectionTitle } from '../../../../.storybook/components';
+import { Dropdown } from '../Dropdown';
+
+<Title
+  title="Dropdown"
+  subtitle="Description of your component here"
+/>
+
+<SectionTitle>Simple</SectionTitle>
+
+Description of the simple story here...
+
+<Preview>
+  <Story id="components-dropdown--simple"/>
+</Preview>
+
+<SectionTitle>Dropdown Props</SectionTitle>
+<Props of={ Dropdown } />
