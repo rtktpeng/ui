@@ -30,7 +30,7 @@ const Container = styled.div`
   `}
 `;
 
-const Title = styled(Typography.Body)`
+const TabBody = styled(Typography.Body)`
   ${({ theme }: { theme: GlobalTheme }) => css`
     color: ${theme.colors.tabItemHorizontal};
 
@@ -97,9 +97,9 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
 
   return (
     <Container className={`${className} rtk-tabs-item`} onClick={handleClick}>
-      <div ref={tabItemRef}>
-        <Title theme={theme}>{title}</Title>
-      </div>
+      <TabBody theme={theme} ref={tabItemRef}>
+        {title}
+      </TabBody>
     </Container>
   );
 };
