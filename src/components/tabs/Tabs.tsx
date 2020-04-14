@@ -101,15 +101,16 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
         >
           {children}
         </TabsContainer>
-        {activeItem == null ? null : (
-          <Inkbar
-            theme={theme}
-            style={{
-              width: activeItem.width,
-              left: activeItem.x,
-            }}
-          />
-        )}
+        {/* {activeItem == null ? null : ( */}
+        <Inkbar
+          theme={theme}
+          style={{
+            visibility: activeItem == null ? 'hidden' : 'visible',
+            width: activeItem == null ? 'unset' : activeItem.width,
+            left: activeItem == null ? 'unset' : activeItem.x,
+          }}
+        />
+        {/* )} */}
       </Container>
     </TabsContext.Provider>
   );

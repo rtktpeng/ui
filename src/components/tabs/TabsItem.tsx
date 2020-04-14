@@ -32,7 +32,7 @@ const Container = styled.div`
 
 const Title = styled(Typography.Body)`
   ${({ theme }: { theme: GlobalTheme }) => css`
-    color: ${theme.colors.white};
+    color: ${theme.colors.tabItemHorizontal};
 
     transition: color ${theme.animationTimeVeryFast}s ease-in-out;
   `}
