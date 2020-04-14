@@ -101,7 +101,6 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
         >
           {children}
         </TabsContainer>
-        {/* {activeItem == null ? null : ( */}
         <Inkbar
           theme={theme}
           style={{
@@ -110,7 +109,6 @@ export const Tabs: TabsFunctionComponent<TabsProps> = ({
             left: activeItem == null ? 'unset' : activeItem.x,
           }}
         />
-        {/* )} */}
       </Container>
     </TabsContext.Provider>
   );
