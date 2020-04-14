@@ -61,6 +61,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
         position={['bl', 'tl']}
         open={open && fooRef !== null}
       >
+        <div>asdfasdf</div>
         <OverlayContainer>{overlay}</OverlayContainer>
       </Floater>
     </Container>

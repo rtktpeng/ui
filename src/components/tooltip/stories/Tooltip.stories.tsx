@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 import { Tooltip } from '../Tooltip';
 
+import { Button } from '../../button/Button';
+
 // @ts-ignore
 import mdx from './Tooltip.mdx';
 
@@ -18,4 +20,8 @@ export default {
   },
 };
 
-export const simple = () => <Tooltip>asdfasdfasdasd</Tooltip>;
+export const simple = () => (
+  <Tooltip position={'left'} overlay={<div>asdasdf</div>}>
+    <Button>Hover Me</Button>
+  </Tooltip>
+);
