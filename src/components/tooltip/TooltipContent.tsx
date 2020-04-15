@@ -35,7 +35,7 @@ export const TooltipContainer = styled.div`
       placement === 'topRight') &&
       css`
         padding-bottom: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-bottom: 4px;
+        margin-bottom: ${theme.tooltipMargin};
       `}
 
     ${(placement === 'right' ||
@@ -43,7 +43,7 @@ export const TooltipContainer = styled.div`
       placement === 'rightBottom') &&
       css`
         padding-left: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-left: 4px;
+        margin-left: ${theme.tooltipMargin};
       `}
 
     ${(placement === 'bottom' ||
@@ -51,7 +51,7 @@ export const TooltipContainer = styled.div`
       placement === 'bottomLeft') &&
       css`
         padding-top: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-top: 4px;
+        margin-top: ${theme.tooltipMargin};
       `}
 
     ${(placement === 'left' ||
@@ -59,7 +59,7 @@ export const TooltipContainer = styled.div`
       placement === 'leftBottom') &&
       css`
         padding-right: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-right: 4px;
+        margin-right: ${theme.tooltipMargin};
       `}
   `}
 `;

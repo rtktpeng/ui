@@ -209,11 +209,12 @@ export interface GlobalTheme {
   tabsItemPadding: string;
 
   // ---- Tooltip ---- //
+  tooltipArrowSize: string;
   tooltipBorder: string;
   tooltipBorderColor: string;
   tooltipBorderRadius: string;
-  tooltipArrowSize: string;
   tooltipBoxShadow: string;
+  tooltipMargin: string;
 
   // ---- Typography ---- //
   typographyTitleFontFamily: string;
