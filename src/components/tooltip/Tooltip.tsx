@@ -58,6 +58,8 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
 
   // If the initial visibility is set, force a rerender to cause the
   // ref anchorElement ref to be refetched by the floater
+  // This is specifically useful for tests but also if user wants to control
+  // the visibilty of a tooltip on their own
   React.useEffect(() => {
     if (visible !== undefined) {
       setTimeout(() => {
