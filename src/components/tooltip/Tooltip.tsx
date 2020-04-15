@@ -6,7 +6,7 @@ import { Floater } from '../floater/Floater';
 
 import { placements, position } from './placements';
 
-import { FooContainer, Arrow, OverlayContainer } from './StyledTooltip';
+import { TooltipContainer, Arrow, OverlayContainer } from './StyledTooltip';
 
 export interface TooltipProps {
   /** className of the dropdown component */
@@ -58,10 +58,10 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
         position={placements[position].position}
         open={open && fooRef !== null}
       >
-        <FooContainer position={position}>
+        <TooltipContainer position={position}>
           <Arrow position={position} />
           <OverlayContainer>{overlay}</OverlayContainer>
-        </FooContainer>
+        </TooltipContainer>
       </Floater>
     </Container>
   );
