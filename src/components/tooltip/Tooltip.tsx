@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Floater } from '../floater/Floater';
 
-import { placements, position } from './placements';
+import { placements, placement } from './placements';
 
 import { TooltipContent } from './TooltipContent';
 
@@ -12,8 +12,8 @@ export interface TooltipProps {
   /** className of the dropdown component */
   className?: string;
 
-  /** the position of the tooltip with respect to the trigger node */
-  position: position;
+  /** the placement of the tooltip with respect to the trigger node */
+  placement: placement;
 
   /** trigger to show the dropdown item  */
   trigger?: 'hover' | 'click';
@@ -31,7 +31,7 @@ const Container = styled.div`
 export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   children,
   className,
-  position,
+  placement,
   overlay,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -55,10 +55,10 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
       {children}
       <Floater
         anchorElement={triggerRef.current}
-        position={placements[position]}
+        position={placements[placement]}
         open={open && triggerRef !== null}
       >
-        <TooltipContent position={position}>{overlay}</TooltipContent>
+        <TooltipContent placement={placement}>{overlay}</TooltipContent>
       </Floater>
     </Container>
   );

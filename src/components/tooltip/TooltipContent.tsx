@@ -4,12 +4,12 @@ import styled, { css } from 'styled-components';
 
 import { useTheme } from '../../hooks/useTheme';
 
-import { position } from './placements';
+import { placement } from './placements';
 
 import { GlobalTheme } from '../../theme/types';
 
 interface TooltipContainerProps {
-  position: position;
+  placement: placement;
   theme: GlobalTheme;
 }
 
@@ -18,45 +18,45 @@ interface OverlayContainerProps {
 }
 
 interface ArrowProps {
-  position: position;
+  placement: placement;
   theme: GlobalTheme;
 }
 
 interface FloaterContentProps {
-  position: position;
+  placement: placement;
 }
 
 export const TooltipContainer = styled.div`
-  ${({ position, theme }: TooltipContainerProps) => css`
+  ${({ placement, theme }: TooltipContainerProps) => css`
     position: relative;
 
-    ${(position === 'top' ||
-      position === 'topLeft' ||
-      position === 'topRight') &&
+    ${(placement === 'top' ||
+      placement === 'topLeft' ||
+      placement === 'topRight') &&
       css`
         padding-bottom: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-bottom: 4px;
       `}
 
-    ${(position === 'right' ||
-      position === 'rightTop' ||
-      position === 'rightBottom') &&
+    ${(placement === 'right' ||
+      placement === 'rightTop' ||
+      placement === 'rightBottom') &&
       css`
         padding-left: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-left: 4px;
       `}
 
-    ${(position === 'bottom' ||
-      position === 'bottomRight' ||
-      position === 'bottomLeft') &&
+    ${(placement === 'bottom' ||
+      placement === 'bottomRight' ||
+      placement === 'bottomLeft') &&
       css`
         padding-top: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-top: 4px;
       `}
 
-    ${(position === 'left' ||
-      position === 'leftTop' ||
-      position === 'leftBottom') &&
+    ${(placement === 'left' ||
+      placement === 'leftTop' ||
+      placement === 'leftBottom') &&
       css`
         padding-right: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-right: 4px;
@@ -75,7 +75,7 @@ export const OverlayContainer = styled.div`
 `;
 
 export const Arrow = styled.div`
-  ${({ position, theme }: ArrowProps) => css`
+  ${({ placement, theme }: ArrowProps) => css`
     position: absolute;
     width: ${theme.tooltipArrowSize};
     height: ${theme.tooltipArrowSize};
@@ -83,9 +83,9 @@ export const Arrow = styled.div`
     transform: rotate(45deg);
 
     /* Arrow pointing down */
-    ${(position === 'top' ||
-      position === 'topLeft' ||
-      position === 'topRight') &&
+    ${(placement === 'top' ||
+      placement === 'topLeft' ||
+      placement === 'topRight') &&
       css`
         border-right: ${theme.tooltipBorder};
         border-bottom: ${theme.tooltipBorder};
@@ -93,9 +93,9 @@ export const Arrow = styled.div`
       `}
 
     /* Arrow pointing left */
-    ${(position === 'right' ||
-      position === 'rightTop' ||
-      position === 'rightBottom') &&
+    ${(placement === 'right' ||
+      placement === 'rightTop' ||
+      placement === 'rightBottom') &&
       css`
         border-bottom: ${theme.tooltipBorder};
         border-left: ${theme.tooltipBorder};
@@ -103,9 +103,9 @@ export const Arrow = styled.div`
       `}
 
     /* Arrow pointing up */
-    ${(position === 'bottom' ||
-      position === 'bottomRight' ||
-      position === 'bottomLeft') &&
+    ${(placement === 'bottom' ||
+      placement === 'bottomRight' ||
+      placement === 'bottomLeft') &&
       css`
         border-top: ${theme.tooltipBorder};
         border-left: ${theme.tooltipBorder};
@@ -113,86 +113,86 @@ export const Arrow = styled.div`
       `}
 
     /* Arrow pointing right */
-    ${(position === 'left' ||
-      position === 'leftTop' ||
-      position === 'leftBottom') &&
+    ${(placement === 'left' ||
+      placement === 'leftTop' ||
+      placement === 'leftBottom') &&
       css`
         border-top: ${theme.tooltipBorder};
         border-right: ${theme.tooltipBorder};
         border-color: ${theme.tooltipBorderColor};
       `}
 
-    /* top arrow positions */
-    ${position === 'top' &&
+    /* top arrow placements */
+    ${placement === 'top' &&
       css`
         bottom: 0px;
         left: calc(50% - 8px);
       `}
 
-    ${position === 'topLeft' &&
+    ${placement === 'topLeft' &&
       css`
         bottom: 0px;
         left: 20%;
       `}
 
-    ${position === 'topRight' &&
+    ${placement === 'topRight' &&
       css`
         bottom: 0px;
         right: 20%;
       `}
 
-    /* right arrow positions */
-    ${position === 'rightTop' &&
+    /* right arrow placements */
+    ${placement === 'rightTop' &&
       css`
         top: 10%;
         left: 0px;
       `}
 
-    ${position === 'right' &&
+    ${placement === 'right' &&
       css`
         top: calc(50% - 8px);
         left: 0px;
       `}
 
-    ${position === 'rightBottom' &&
+    ${placement === 'rightBottom' &&
       css`
         bottom: 10%;
         left: 0px;
       `}
 
-    /* bottom arrow positions */
-    ${position === 'bottomRight' &&
+    /* bottom arrow placements */
+    ${placement === 'bottomRight' &&
       css`
         top: 0px;
         right: 20%;
       `}
 
-    ${position === 'bottom' &&
+    ${placement === 'bottom' &&
       css`
         top: 0px;
         left: calc(50% - 8px);
       `}
 
-    ${position === 'bottomLeft' &&
+    ${placement === 'bottomLeft' &&
       css`
         top: 0px;
         left: 20%;
       `}
 
-    /* left arrow positions */
-    ${position === 'leftBottom' &&
+    /* left arrow placements */
+    ${placement === 'leftBottom' &&
       css`
         bottom: 10%;
         right: 0px;
       `}
 
-    ${position === 'left' &&
+    ${placement === 'left' &&
       css`
         top: calc(50% - 8px);
         right: 0px;
       `}
 
-    ${position === 'leftTop' &&
+    ${placement === 'leftTop' &&
       css`
         top: 10%;
         right: 0px;
@@ -202,13 +202,13 @@ export const Arrow = styled.div`
 
 export const TooltipContent: React.FunctionComponent<FloaterContentProps> = ({
   children,
-  position,
+  placement,
 }) => {
   const theme = useTheme();
 
   return (
-    <TooltipContainer position={position} theme={theme}>
-      <Arrow position={position} theme={theme} />
+    <TooltipContainer placement={placement} theme={theme}>
+      <Arrow placement={placement} theme={theme} />
       <OverlayContainer theme={theme}>{children}</OverlayContainer>
     </TooltipContainer>
   );

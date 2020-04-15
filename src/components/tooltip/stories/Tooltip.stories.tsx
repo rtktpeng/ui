@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { Tooltip } from '../Tooltip';
-import { position } from '../placements';
+import { placement } from '../placements';
 
 import { Button } from '../../button/Button';
 
@@ -21,7 +21,7 @@ export default {
   },
 };
 
-const positions: position[] = [
+const positions: placement[] = [
   'topLeft',
   'top',
   'topRight',
@@ -59,7 +59,7 @@ export const simple = () => {
   const position = positions[index];
   return (
     <>
-      <Tooltip position={position} overlay={<Overlay />}>
+      <Tooltip placement={position} overlay={<Overlay />}>
         <Button onClick={handleClick} ghost>
           Click to Change Position
         </Button>
