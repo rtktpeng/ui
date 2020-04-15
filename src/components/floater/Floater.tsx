@@ -63,6 +63,7 @@ export const Floater: React.FunctionComponent<FloaterProps> = props => {
     portalElement,
     setPortalElement,
   ] = React.useState<HTMLDivElement | null>(null);
+
   const [portalPosition, setPortalPosition] = React.useState<Position | null>(
     null
   );

@@ -15,14 +15,17 @@ export interface TooltipProps {
   /** the placement of the tooltip with respect to the trigger node */
   placement: placement;
 
-  /** trigger to show the dropdown item  */
-  trigger?: 'hover' | 'click';
+  /** trigger to show the dropdown item. (click to come later) */
+  trigger?: 'hover';
 
   /** content to show in the dropdown */
   overlay?: React.ReactNode;
 
   /** if true, the arrow on the tooltip will be removed */
   hideArrow?: boolean;
+
+  /** if true, the tooltip will be rendered but not visible. Mostly used for testing */
+  visible?: boolean;
 }
 
 const Container = styled.div`
@@ -37,7 +40,9 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   hideArrow,
   placement,
   overlay,
+  visible,
 }) => {
+  const [, forceRerender] = React.useState();
   const [open, setOpen] = React.useState(false);
   const triggerRef = React.useRef(null);
 
@@ -47,6 +52,20 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
 
   const handleMouseLeave = React.useCallback(() => {
     setOpen(false);
+  }, []);
+
+  const isOpen = visible == null ? open && triggerRef !== null : visible;
+
+  // If the initial visibility is set, force a rerender to cause the
+  // ref anchorElement ref to be refetched by the floater
+  React.useEffect(() => {
+    if (visible !== undefined) {
+      setTimeout(() => {
+        forceRerender({});
+      }, 0);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -60,7 +79,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
       <Floater
         anchorElement={triggerRef.current}
         position={placements[placement]}
-        open={open && triggerRef !== null}
+        open={isOpen}
       >
         <TooltipContainer placement={placement} hideArrow={hideArrow}>
           {overlay}

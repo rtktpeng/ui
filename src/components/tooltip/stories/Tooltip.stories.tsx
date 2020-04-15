@@ -59,7 +59,7 @@ export const simple = () => {
   const position = positions[index];
   return (
     <>
-      <Tooltip placement={position} overlay={<Overlay />}>
+      <Tooltip placement={position} overlay={<Overlay />} visible={false}>
         <Button onClick={handleClick} ghost>
           Click to Change Position
         </Button>
