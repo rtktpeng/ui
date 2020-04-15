@@ -6,7 +6,7 @@ import { Floater } from '../floater/Floater';
 
 import { placements, placement } from './placements';
 
-import { TooltipContent } from './TooltipContent';
+import { TooltipContainer } from './TooltipContainer';
 
 export interface TooltipProps {
   /** className of the dropdown component */
@@ -20,6 +20,9 @@ export interface TooltipProps {
 
   /** content to show in the dropdown */
   overlay?: React.ReactNode;
+
+  /** if true, the arrow on the tooltip will be removed */
+  hideArrow?: boolean;
 }
 
 const Container = styled.div`
@@ -31,6 +34,7 @@ const Container = styled.div`
 export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   children,
   className,
+  hideArrow,
   placement,
   overlay,
 }) => {
@@ -58,7 +62,9 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
         position={placements[placement]}
         open={open && triggerRef !== null}
       >
-        <TooltipContent placement={placement}>{overlay}</TooltipContent>
+        <TooltipContainer placement={placement} hideArrow={hideArrow}>
+          {overlay}
+        </TooltipContainer>
       </Floater>
     </Container>
   );

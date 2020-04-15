@@ -10,7 +10,7 @@ import { GlobalTheme } from '../../theme/types';
 
 interface TooltipContainerProps {
   placement: placement;
-  theme: GlobalTheme;
+  hideArrow?: boolean;
 }
 
 interface OverlayContainerProps {
@@ -22,12 +22,13 @@ interface ArrowProps {
   theme: GlobalTheme;
 }
 
-interface FloaterContentProps {
+interface TooltipContentProps {
   placement: placement;
+  theme: GlobalTheme;
 }
 
-export const TooltipContainer = styled.div`
-  ${({ placement, theme }: TooltipContainerProps) => css`
+export const TooltipContent = styled.div`
+  ${({ placement, theme }: TooltipContentProps) => css`
     position: relative;
 
     ${(placement === 'top' ||
@@ -200,16 +201,17 @@ export const Arrow = styled.div`
   `}
 `;
 
-export const TooltipContent: React.FunctionComponent<FloaterContentProps> = ({
+export const TooltipContainer: React.FunctionComponent<TooltipContainerProps> = ({
   children,
+  hideArrow,
   placement,
 }) => {
   const theme = useTheme();
 
   return (
-    <TooltipContainer placement={placement} theme={theme}>
-      <Arrow placement={placement} theme={theme} />
+    <TooltipContent placement={placement} theme={theme}>
+      {!hideArrow && <Arrow placement={placement} theme={theme} />}
       <OverlayContainer theme={theme}>{children}</OverlayContainer>
-    </TooltipContainer>
+    </TooltipContent>
   );
 };
