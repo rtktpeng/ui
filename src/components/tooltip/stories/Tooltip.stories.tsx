@@ -45,6 +45,10 @@ const Current = styled.div`
   margin-top: 16px;
 `;
 
+const Spacer = styled.div`
+  height: 16px;
+`;
+
 export const simple = () => {
   const [index, setPositionIndex] = React.useState(0);
 
@@ -59,12 +63,28 @@ export const simple = () => {
   const position = positions[index];
   return (
     <>
-      <Tooltip placement={position} overlay={<Overlay />} visible={false}>
+      <Tooltip placement={position} overlay={<Overlay />}>
         <Button onClick={handleClick} ghost>
           Click to Change Position
         </Button>
       </Tooltip>
       <Current>Current Position: {positions[index]}</Current>
+    </>
+  );
+};
+
+export const visible = () => {
+  const [visible, setVisible] = React.useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setVisible(!visible)}>
+        Click to Show Tooltip
+      </Button>
+      <Spacer />
+      <Tooltip placement={'bottom'} overlay={<Overlay />} visible={visible}>
+        <Button ghost>Tooltip Here</Button>
+      </Tooltip>
     </>
   );
 };
