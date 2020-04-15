@@ -1,16 +1,40 @@
+import * as React from 'react';
+
 import styled, { css } from 'styled-components';
+
+import { useTheme } from '../../hooks/useTheme';
 
 import { position } from './placements';
 
+import { GlobalTheme } from '../../theme/types';
+
+interface TooltipContainerProps {
+  position: position;
+  theme: GlobalTheme;
+}
+
+interface OverlayContainerProps {
+  theme: GlobalTheme;
+}
+
+interface ArrowProps {
+  position: position;
+  theme: GlobalTheme;
+}
+
+interface FloaterContentProps {
+  position: position;
+}
+
 export const TooltipContainer = styled.div`
-  ${({ position }: { position: position }) => css`
+  ${({ position, theme }: TooltipContainerProps) => css`
     position: relative;
 
     ${(position === 'top' ||
       position === 'topLeft' ||
       position === 'topRight') &&
       css`
-        padding-bottom: 8px;
+        padding-bottom: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-bottom: 4px;
       `}
 
@@ -18,7 +42,7 @@ export const TooltipContainer = styled.div`
       position === 'rightTop' ||
       position === 'rightBottom') &&
       css`
-        padding-left: 8px;
+        padding-left: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-left: 4px;
       `}
 
@@ -26,7 +50,7 @@ export const TooltipContainer = styled.div`
       position === 'bottomRight' ||
       position === 'bottomLeft') &&
       css`
-        padding-top: 8px;
+        padding-top: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-top: 4px;
       `}
 
@@ -34,33 +58,38 @@ export const TooltipContainer = styled.div`
       position === 'leftTop' ||
       position === 'leftBottom') &&
       css`
-        padding-right: 8px;
+        padding-right: ${`calc(${theme.tooltipArrowSize} / 2)`};
         margin-right: 4px;
       `}
   `}
 `;
 
 export const OverlayContainer = styled.div`
-  background: white;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  border: 1px solid lightgray;
+  ${({ theme }: OverlayContainerProps) => css`
+    background: ${theme.colors.primaryBackground};
+    box-shadow: ${theme.tooltipBoxShadow};
+    border-radius: 5px;
+    border: ${theme.tooltipBorder};
+    border-color: ${theme.colors.border};
+  `}
 `;
 
 export const Arrow = styled.div`
-  ${({ position }: { position: position }) => css`
+  ${({ position, theme }: ArrowProps) => css`
     position: absolute;
-    width: 0px;
-    height: 0px;
+    width: ${theme.tooltipArrowSize};
+    height: ${theme.tooltipArrowSize};
+    background: ${theme.colors.primaryBackground};
+    transform: rotate(45deg);
 
     /* Arrow pointing down */
     ${(position === 'top' ||
       position === 'topLeft' ||
       position === 'topRight') &&
       css`
-        border-top: 8px solid white;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
+        border-right: ${theme.tooltipBorder};
+        border-bottom: ${theme.tooltipBorder};
+        border-color: ${theme.tooltipBorderColor};
       `}
 
     /* Arrow pointing left */
@@ -68,9 +97,9 @@ export const Arrow = styled.div`
       position === 'rightTop' ||
       position === 'rightBottom') &&
       css`
-        border-bottom: 8px solid transparent;
-        border-top: 8px solid transparent;
-        border-right: 8px solid white;
+        border-bottom: ${theme.tooltipBorder};
+        border-left: ${theme.tooltipBorder};
+        border-color: ${theme.tooltipBorderColor};
       `}
 
     /* Arrow pointing up */
@@ -78,9 +107,9 @@ export const Arrow = styled.div`
       position === 'bottomRight' ||
       position === 'bottomLeft') &&
       css`
-        border-bottom: 8px solid white;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
+        border-top: ${theme.tooltipBorder};
+        border-left: ${theme.tooltipBorder};
+        border-color: ${theme.tooltipBorderColor};
       `}
 
     /* Arrow pointing right */
@@ -88,9 +117,9 @@ export const Arrow = styled.div`
       position === 'leftTop' ||
       position === 'leftBottom') &&
       css`
-        border-bottom: 8px solid transparent;
-        border-top: 8px solid transparent;
-        border-left: 8px solid white;
+        border-top: ${theme.tooltipBorder};
+        border-right: ${theme.tooltipBorder};
+        border-color: ${theme.tooltipBorderColor};
       `}
 
     /* top arrow positions */
@@ -170,3 +199,17 @@ export const Arrow = styled.div`
       `}
   `}
 `;
+
+export const TooltipContent: React.FunctionComponent<FloaterContentProps> = ({
+  children,
+  position,
+}) => {
+  const theme = useTheme();
+
+  return (
+    <TooltipContainer position={position} theme={theme}>
+      <Arrow position={position} theme={theme} />
+      <OverlayContainer theme={theme}>{children}</OverlayContainer>
+    </TooltipContainer>
+  );
+};

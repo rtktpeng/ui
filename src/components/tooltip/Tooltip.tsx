@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Floater } from '../floater/Floater';
 
 import { placements, position } from './placements';
 
-import { TooltipContainer, Arrow, OverlayContainer } from './StyledTooltip';
+import { TooltipContent } from './TooltipContent';
 
 export interface TooltipProps {
   /** className of the dropdown component */
@@ -35,7 +35,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   overlay,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const fooRef = React.useRef(null);
+  const triggerRef = React.useRef(null);
 
   const handleMouseEnter = React.useCallback(() => {
     setOpen(true);
@@ -47,21 +47,18 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
 
   return (
     <Container
-      ref={fooRef}
+      ref={triggerRef}
       className={`${className} rtk-tooltip`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {children}
       <Floater
-        anchorElement={fooRef.current}
-        position={placements[position].position}
-        open={open && fooRef !== null}
+        anchorElement={triggerRef.current}
+        position={placements[position]}
+        open={open && triggerRef !== null}
       >
-        <TooltipContainer position={position}>
-          <Arrow position={position} />
-          <OverlayContainer>{overlay}</OverlayContainer>
-        </TooltipContainer>
+        <TooltipContent position={position}>{overlay}</TooltipContent>
       </Floater>
     </Container>
   );
