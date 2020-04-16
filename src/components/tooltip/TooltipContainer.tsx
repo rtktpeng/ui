@@ -69,9 +69,9 @@ export const OverlayContainer = styled.div`
   ${({ theme }: OverlayContainerProps) => css`
     background: ${theme.colors.primaryBackground};
     box-shadow: ${theme.tooltipBoxShadow};
-    border-radius: 5px;
+    border-radius: ${theme.tooltipBorderRadius};
     border: ${theme.tooltipBorder};
-    border-color: ${theme.colors.border};
+    border-color: ${theme.tooltipBorderColor};
   `}
 `;
 
