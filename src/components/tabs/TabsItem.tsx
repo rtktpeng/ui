@@ -106,7 +106,6 @@ export const TabsItem: React.FunctionComponent<TabsItemProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItem]);
 
-  console.log(selectedItem, itemKey);
   return (
     <Container
       className={`${className} rtk-tabs-item`}
