@@ -4,12 +4,12 @@ import styled, { css } from 'styled-components';
 
 import { useTheme } from '../../hooks/useTheme';
 
-import { placement } from './placements';
+import { Placement } from './placements';
 
 import { GlobalTheme } from '../../theme/types';
 
 interface TooltipContainerProps {
-  placement: placement;
+  placement: Placement;
   hideArrow?: boolean;
 }
 
@@ -18,12 +18,12 @@ interface OverlayContainerProps {
 }
 
 interface ArrowProps {
-  placement: placement;
+  placement: Placement;
   theme: GlobalTheme;
 }
 
 interface TooltipContentProps {
-  placement: placement;
+  placement: Placement;
   theme: GlobalTheme;
 }
 

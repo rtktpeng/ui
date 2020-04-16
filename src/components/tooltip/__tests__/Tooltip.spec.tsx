@@ -37,7 +37,6 @@ describe('Tooltip', () => {
       </Tooltip>
     );
     const promise = new Promise<ReactWrapper<any>>(resolve => {
-      wrapper.setProps({ open: false });
       wrapper.update();
 
       // wait for the animation to finish

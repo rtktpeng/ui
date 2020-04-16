@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Floater } from '../floater/Floater';
 
-import { placements, placement } from './placements';
+import { placements, Placement } from './placements';
 
 import { TooltipContainer } from './TooltipContainer';
 
@@ -13,7 +13,7 @@ export interface TooltipProps {
   className?: string;
 
   /** the placement of the tooltip with respect to the trigger node */
-  placement: placement;
+  placement: Placement;
 
   /** trigger to show the dropdown item. (click to come later) */
   trigger?: 'hover';
@@ -61,11 +61,13 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
   // This is specifically useful for tests but also if user wants to control
   // the visibilty of a tooltip on their own
   React.useEffect(() => {
-    if (visible !== undefined) {
-      setTimeout(() => {
-        forceRerender({});
-      }, 0);
+    if (visible == null) {
+      return;
     }
+
+    setTimeout(() => {
+      forceRerender({});
+    }, 0);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

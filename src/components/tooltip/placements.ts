@@ -1,4 +1,4 @@
-export type placement =
+export type Placement =
   | 'topLeft'
   | 'top'
   | 'topRight'

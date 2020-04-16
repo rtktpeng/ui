@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { Tooltip } from '../Tooltip';
-import { placement } from '../placements';
+import { Placement } from '../placements';
 
 import { Button } from '../../button/Button';
 
@@ -21,7 +21,7 @@ export default {
   },
 };
 
-const positions: placement[] = [
+const positions: Placement[] = [
   'topLeft',
   'top',
   'topRight',
