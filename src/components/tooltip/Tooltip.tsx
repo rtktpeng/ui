@@ -24,7 +24,7 @@ export interface TooltipProps {
   /** if true, the arrow on the tooltip will be removed */
   hideArrow?: boolean;
 
-  /** if true, the tooltip will be rendered but not visible. Mostly used for testing */
+  /** if true, the tooltip will be shown. Use this to customize the tooltips behaviour */
   visible?: boolean;
 }
 
