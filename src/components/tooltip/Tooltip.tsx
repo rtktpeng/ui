@@ -12,8 +12,8 @@ export interface TooltipProps {
   /** className of the dropdown component */
   className?: string;
 
-  /** distance the tooltip will render from the anchor element */
-  gap?: number;
+  /** distance the tooltip will render from the anchor element (in pixels) */
+  gap?: string;
 
   /** if true, the arrow on the tooltip will be removed */
   hideArrow?: boolean;

@@ -216,7 +216,7 @@ export interface GlobalTheme {
   tooltipBorderColor: string;
   tooltipBorderRadius: string;
   tooltipBoxShadow: string;
-  tooltipMargin: number;
+  tooltipMargin: string;
 
   // ---- Typography ---- //
   typographyTitleFontFamily: string;

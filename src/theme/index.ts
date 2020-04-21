@@ -189,7 +189,7 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   tooltipBorderRadius: '4px',
   tooltipArrowSize: '10px',
   tooltipBoxShadow: `0px 4px 4px ${rgba(themeColors.black, 0.25)}`,
-  tooltipMargin: 4,
+  tooltipMargin: '4px',
 
   // ---- Typography ---- //
   typographyTitleFontFamily: '"Encode Sans", sans-serif',

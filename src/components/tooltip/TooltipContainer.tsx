@@ -9,7 +9,7 @@ import { Placement } from './placements';
 import { GlobalTheme } from '../../theme/types';
 
 interface TooltipContainerProps {
-  gap?: number;
+  gap?: string;
   placement: Placement;
   hideArrow?: boolean;
 }
@@ -24,7 +24,7 @@ interface ArrowProps {
 }
 
 interface TooltipContentProps {
-  gap?: number;
+  gap?: string;
   placement: Placement;
   theme: GlobalTheme;
 }
@@ -38,7 +38,7 @@ export const TooltipContent = styled.div`
       placement === 'topRight') &&
       css`
         padding-bottom: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-bottom: ${gap || theme.tooltipMargin}px;
+        margin-bottom: ${gap == null ? theme.tooltipMargin : gap};
       `}
 
     ${(placement === 'right' ||
@@ -46,7 +46,7 @@ export const TooltipContent = styled.div`
       placement === 'rightBottom') &&
       css`
         padding-left: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-left: ${gap || theme.tooltipMargin}px;
+        margin-left: ${gap == null ? theme.tooltipMargin : gap};
       `}
 
     ${(placement === 'bottom' ||
@@ -54,7 +54,7 @@ export const TooltipContent = styled.div`
       placement === 'bottomLeft') &&
       css`
         padding-top: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-top: ${gap || theme.tooltipMargin}px;
+        margin-top: ${gap == null ? theme.tooltipMargin : gap};
       `}
 
     ${(placement === 'left' ||
@@ -62,7 +62,7 @@ export const TooltipContent = styled.div`
       placement === 'leftBottom') &&
       css`
         padding-right: ${`calc(${theme.tooltipArrowSize} / 2)`};
-        margin-right: ${gap || theme.tooltipMargin}px;
+        margin-right: ${gap == null ? theme.tooltipMargin : gap};
       `}
   `}
 `;

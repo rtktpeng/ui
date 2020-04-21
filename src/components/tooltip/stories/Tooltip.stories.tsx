@@ -82,12 +82,7 @@ export const visible = () => {
         Click to Show Tooltip
       </Button>
       <Spacer />
-      <Tooltip
-        gap={100}
-        placement={'bottom'}
-        overlay={<Overlay />}
-        visible={visible}
-      >
+      <Tooltip placement={'bottom'} overlay={<Overlay />} visible={visible}>
         <Button ghost>Tooltip Here</Button>
       </Tooltip>
     </>
